@@ -1,1 +1,3 @@
 hbproj-env
+secrets.sh
+*.pyc

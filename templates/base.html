@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <title>Comics</title>
+    <link rel="stylesheet"
+          href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css"/>
+</head>
+
+<body>
+  Comics
+  <hr>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+  {% block content %} put your content here {% endblock %}
+
+</body>
+</html>
