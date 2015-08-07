@@ -22,6 +22,13 @@ def index():
 
     return render_template("homepage.html")
 
+@app.route('/addcomics')
+def inputform():
+    """input form test"""
+
+
+    return render_template("input_form.html")
+
 
 
 if __name__ == "__main__":

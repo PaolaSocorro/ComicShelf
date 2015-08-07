@@ -43,8 +43,8 @@ class Book(db.Model):
 
     __tablename__ = "books"
 
-    book_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
-    publisher_id = db.Column(db.Integer,db.ForeignKey('publishers.publisher_id'))#foreign key to publishers table
+    book_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    publisher_id = db.Column(db.Integer, db.ForeignKey('publishers.publisher_id'))  # FK to publishers table
     title = db.Column(db.String(200), nullable=False)
     release_date = db.Column(db.Date, nullable=True)
     year = db.Column(db.Integer, nullable=True)
@@ -64,12 +64,12 @@ class Comment(db.Model):
     TEST: ADD a comment to a book, and a story arc.
     """
 
-    __tablename__ ="comments"
+    __tablename__ = "comments"
 
     comment_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer,db.ForeignKey('users.user_id')) #FK TO USER TABLE
-    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id')) #FK TO BOOK TABLE
-    arc_id = db.Column(db.Integer, db.ForeignKey('arcs.arc_id')) #FK TO ARC TABLE
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))  # FK TO USER TABLE
+    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
+    arc_id = db.Column(db.Integer, db.ForeignKey('arcs.arc_id'))  # FK TO ARC TABLE
     comment = db.Column(db.String(1000), nullable=True)
 
     user = db.relationship("User",
@@ -88,12 +88,12 @@ class Bookmark(db.Model):
     TEST: add a bookmark to a book.
     """
 
-    __tablename__ ="bookmarks"
+    __tablename__ = "bookmarks"
 
-    bookmark_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
-    user_id = db.Column(db.Integer,db.ForeignKey('users.user_id')) #FK TO USER TABLE
-    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id')) #FK TO BOOK TABLE
-    page_number = db.Column(db.Integer,nullable=False)
+    bookmark_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))  # FK TO USER TABLE
+    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
+    page_number = db.Column(db.Integer, nullable=False)
 
     user = db.relationship("User",
                 backref=db.backref("bookmarks", order_by=bookmark_id))
@@ -105,11 +105,11 @@ class Rating(db.Model):
     """Ratings table
     TEST: rate a book, and story arc
     """
-    __tablename__ ="ratings"
+    __tablename__ = "ratings"
 
 
-    rating_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
-    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id')) #FK TO BOOK TABLE
+    rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
     book_rating = db.Column(db.Integer, nullable=True)
     arc_rating = db.Column(db.Integer, nullable=True)
 
@@ -123,11 +123,11 @@ class Publisher(db.Model):
     TEST: add a publisher. ex. Marvel, marvel. (check for upper, lowercase)
     """
 
-    __tablename__ ="publishers"
+    __tablename__ = "publishers"
 
-    publisher_id  = db.Column(db.Integer, autoincrement=True,primary_key=True)
+    publisher_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(100), nullable=True)
-    founded = db.Column(db.Integer, nullable=True)
+    # founded = db.Column(db.Integer, nullable=True)
 
 
 
@@ -135,13 +135,13 @@ class Artist(db.Model):
     """
     Comic book artists
     """
-    __tablename__ ="artists"
+    __tablename__ = "artists"
 
 
-    artist_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
-    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id')) #FK TO BOOK TABLE
+    artist_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
     artist_name = db.Column(db.String(100), nullable=False)
-    job = db.Column(db.String(50))  #(pencils,inks colors)
+    job = db.Column(db.String(50))  # (pencils,inks colors)
 
 
     book = db.relationship("Book",
@@ -153,10 +153,10 @@ class Author(db.Model):
     book authors
     """
 
-    __tablename__ ="authors"
+    __tablename__ = "authors"
 
-    author_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
-    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id')) #FK TO BOOK TABLE 
+    author_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
     author_name = db.Column(db.String(100), nullable=False)
     # co_author = db.Column(db.String(100), nullable=False)#(Y/N) BOOLEAN VALUE
     gender = db.Column(db.String(20), nullable=True)
@@ -169,15 +169,15 @@ class Character(db.Model):
     book characters, comics
 
     """
-    __tablename__ ="characters"
+    __tablename__ = "characters"
 
 
-    character_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
-    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id')) #FK TO BOOK TABLE
+    character_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
     hero_name = db.Column(db.String(100), nullable=False)
     real_name = db.Column(db.String(100), nullable=True)
-    universe= db.Column(db.String(100), nullable=True) 
-    aliases= db.Column(db.String(500), nullable=True)
+    universe = db.Column(db.String(100), nullable=True)
+    aliases = db.Column(db.String(500), nullable=True)
 
     book = db.relationship("Book",
                 backref=db.backref("characters", order_by=character_id))
@@ -191,9 +191,9 @@ class Arc(db.Model):
 
     TEST: creat an arc"""
 
-    __tablename__="arcs"
+    __tablename__ = "arcs"
 
-    arc_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
+    arc_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(500), nullable=True)
 
 
@@ -202,9 +202,9 @@ class Tag(db.Model):
 
     TEST: creat a few tags"""
 
-    __tablename__="tags"
+    __tablename__ = "tags"
 
-    tag_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
+    tag_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     tag = db.Column(db.String(100), nullable=True)
 
 
@@ -213,9 +213,9 @@ class Genre(db.Model):
 
     TEST: creat an genre"""
 
-    __tablename__="genres"
+    __tablename__ = "genres"
 
-    genre_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
+    genre_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     genre = db.Column(db.String(100), nullable=True)
 
 
@@ -229,16 +229,14 @@ class BookGenre(db.Model):
     Join table to find the genre of a book
     """
 
-    __tablename__ ="bookgenres"
+    __tablename__ = "bookgenres"
 
-    book_id = db.Column(db.Integer, primary_key=True) #FK TO BOOK TABLE
-    genre_id = db.Column(db.Integer, primary_key=True) #FK TO GENRE TABLE
+    bookgenre_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
 
-    # book = db.relationship("Book",
-    #         backref=db.backref("bookgenres", order_by=bookgenre_id))
 
-    # genre = db.relationship("Genre",
-    #         backref=db.backref("bookgenres", order_by=bookgenre_id))
+    book = db.relationship("Book",
+            backref=db.backref("bookgenres", order_by=bookgenre_id))
 
 
 class BookTag(db.Model):
@@ -246,11 +244,14 @@ class BookTag(db.Model):
     Join table to find the tag of a book
     """
 
-    __tablename__ ="booktags"
+    __tablename__ = "booktags"
 
-    book_id = db.Column(db.Integer, primary_key=True) #FK TO BOOK TABLE
-    tag_id = db.Column(db.Integer, primary_key=True) #FK TO TAG TABLE
+    booktag_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id')) #FK TO BOOK TABLE
 
+
+    book = db.relationship("Book",
+            backref=db.backref("booktags", order_by=booktag_id))
 
 
 class BookArc(db.Model):
@@ -258,11 +259,14 @@ class BookArc(db.Model):
     Join table of books and their arcs
     """
 
-    __tablename__ ="bookarcs"
+    __tablename__ = "bookarcs"
 
-    book_id = db.Column(db.Integer, primary_key=True) #FK TO BOOK TABLE
-    arc_id = db.Column(db.Integer, primary_key=True) #FK TO ARC TABLE
+    bookarc_id = db.Column(db.Integer, autoincrement=True, primary_key=True)  # FK TO ARC TABLE
+    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
 
+
+    book = db.relationship("Book",
+                backref=db.backref("bookarcs", order_by=bookarc_id))
 
 
 ##########
@@ -272,7 +276,7 @@ class BookArc(db.Model):
 def connect_to_db(app):
     """Connect the database to our Flask app."""
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:wildm3101@localhost:5432/comics'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:wildm3101@localhost:5432/comicsdb'
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://paola:hackbright@localhost:5432/comics'
 
     db.app = app
