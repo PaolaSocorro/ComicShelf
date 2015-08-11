@@ -5,36 +5,46 @@
 
 <br>
 <form action="/addcomics">
-    <button type="submit" id="add_more">Add Comics</button>
-
-    <table class="add_table">
-        <div class="form-group">
-            <tr id="table_row_labels">
-                <td>Title</td>
-                <td>Year</td>
-                <td>Issue Number</td>
-                <td>Language</td>
-                <td>Publisher</td>
+    <table id="form_table" style="width:100%" class="table table-striped">
+        <thead>
+            <tr id="table_row_headers">
+                <th>ID</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Issue Number</th>
+                <th>Language</th>
+                <th>Publisher</th>
             </tr>
-        </div>
-
-        <div class="form-group">
+        </thead>
+        <tbody>
             <tr id="table_row">
-                <td><input type="text" name="title" placeholder="Batman Inc"></td>
-                <td><input type="text" name="year" placeholder="2012"></td>
-                <td><input type="text" name="issue_number" placeholder="22"></td>
-                <td><input type="text" name="language" placeholder="English"></td>
-                <td><input type="text" name="publisher" placeholder="DC"></td>
-            </tr>
-        </div>
+                <td id="id">0</td>
+                <td id="name">Comic Title</td>
+                <td id="year">Year</td>
+                <td id="issue">Issue #</td>
+                <td id="lang">Language</td>
+                <td id="publisher">Publisher</td>
 
+            </tr>
+        </tbody>
+        <tfoot>
+            
+        </tfoot>
     </table>
-    <br>
+
+
+
+</form>
+<br>
+    <button type="submit" id="add_more">Add Rows</button>
 
     <button type="submit">Submit</button>
-</form>
+<br>
+<br>
 
+    <button type="submit" id="make_table">Add Comics</button>
 
 
 
 {% endblock %}
+

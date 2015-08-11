@@ -1,9 +1,12 @@
 from jinja2 import StrictUndefined
 
-from flask import Flask, render_template, redirect, request, flash, session
+from flask import Flask, render_template, redirect, request, flash, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 
 from model import User, connect_to_db, db
+import seed_comics, json
+
+
 
 
 app = Flask(__name__)
@@ -24,11 +27,21 @@ def index():
 
 @app.route('/addcomics')
 def inputform():
-    """input form test"""
 
 
     return render_template("input_form.html")
 
+@app.route('/comictable')
+def make_table():
+    """input form test"""
+    file_loc = "C:\Users\Paola\Desktop\Comic Test\Forever Evil"
+
+    comics = seed_comics.walk_files(file_loc)
+    print 'here on comic table'
+    # comics = json.loads(comics)
+    print comics
+
+    return jsonify(comics)
 
 
 if __name__ == "__main__":
