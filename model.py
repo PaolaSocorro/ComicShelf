@@ -30,10 +30,10 @@ class User(db.Model):
     gender = db.Column(db.String(20), nullable=True)
 
 
-    def __repr__(self):
-        """Provide helpful representation when printed."""
+    # def __repr__(self):
+    #     """Provide helpful representation when printed."""
 
-        return "<User user_id=%s name=% age=%s email=%s password=%s gender=%s>" % (self.user_id, self.name, self.age, self.email, self.password, gender.zipcode)
+    #     return "<User user_id=%s name=% age=%s email=%s password=%s gender=%s>" % (self.user_id, self.name, self.age, self.email, self.password, self.gender)
 
 class Book(db.Model):
     """Book, or comic of organization app.

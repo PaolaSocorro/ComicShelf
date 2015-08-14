@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Add your book info</h1>
+
+
+<!-- <h3>Add your book info</h3> -->
+
 
 <br>
 <form action="/addcomics">
@@ -33,8 +36,10 @@
     </table>
 
 
-
+<!-- <input type="file" id="open_file" multiple onchange="handleFiles(this.files)">
+ -->
 </form>
+
 <br>
     <button type="submit" id="add_more">Add Rows</button>
 
@@ -42,7 +47,33 @@
 <br>
 <br>
 
-    <button type="submit" id="make_table">Add Comics</button>
+    <button type="submit" id="make_table">Add Comics</button> 
+<br>
+<br>
+
+<!-- <form action="/upload" method='POST' enctype="multipart/form-data">
+
+    <input type="file" id="open_file" multiple onchange="handleFiles(this.files)">
+    <input type="submit" value="add" id="upload_files">
+
+</form>  -->   
+
+<!--     <div id="comicdrop" >
+
+        <span class="message">Drop Comic Files here.</span>
+
+    </div> -->
+
+
+<form id="upload_comic" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <label for="file">Select a file</label>
+        <input name="file" type="file" id="open_file">
+    </fieldset>
+    <fieldset>
+        <button id="upload_button" type="button">Upload</button>
+    </fieldset>
+</form>
 
 
 

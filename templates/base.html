@@ -2,17 +2,33 @@
 <html>
 <head>
   <title>Comics</title>
-    <link rel="stylesheet"
+  <link rel="stylesheet" href="static/css/styles.css" />
+  <link rel="stylesheet"
           href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css"/>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
 </head>
 
 <body>
-  Comics
-  <hr>
+<!--   <div><a href="/">Home </a></div>
+  <div><a href="/login">Log In </a></div>
+  <div><a href="/signup">Sign Up </a></div> -->
+
+  <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
+                    <li><a href="/addcomics">Add Comics</a></li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li class="nav pull-right"><a href="#">Profile</a></li>
+                    <!-- <li><a href="#">Log In</a></li> -->
+                    
+                </ul>
+            </div>
+
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -25,7 +41,7 @@
 
   {% block content %} put your content here {% endblock %}
 
-
+  <script type="text/javascript" src="static/scripts/jquery.filedrop.js"></script>
   <script type="text/javascript" src="static/scripts/add_table_cells.js"></script>
 
 </body>
