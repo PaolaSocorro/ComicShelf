@@ -10,7 +10,7 @@ import seed_comics, json
 
 
 app = Flask(__name__)
-print app
+
 
 # Required to use Flask sessions and the debug toolbar
 app.secret_key = "ABC"
@@ -33,7 +33,7 @@ def inputform():
     return render_template("input_form.html")
 
 
-@app.route('/comictable')
+@app.route('/comictable', methods=['GET','POST'])
 def make_table():
     """input form test"""
     # file_loc = "C:\Users\Paola\Desktop\Comic Test\Forever Evil"
