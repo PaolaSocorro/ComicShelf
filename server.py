@@ -4,13 +4,13 @@ from flask import Flask, render_template, redirect, request, flash, session, jso
 from flask_debugtoolbar import DebugToolbarExtension
 
 from model import User, Publisher, connect_to_db, db
-import seed_comics, json
+import extract_comics, json
 
 
 
 
 app = Flask(__name__)
-
+# print app
 
 # Required to use Flask sessions and the debug toolbar
 app.secret_key = "ABC"
@@ -19,6 +19,12 @@ app.secret_key = "ABC"
 # This is horrible. Fix this so that, instead, it raises an error.
 app.jinja_env.undefined = StrictUndefined
 
+"""
+###################################
+    render_template ROUTES
+###################################
+
+"""
 
 @app.route('/')
 def index():
@@ -33,29 +39,47 @@ def inputform():
     return render_template("input_form.html")
 
 
+
+
+"""
+###################################
+    WORK ROUTES
+###################################
+
+"""
+
+
 @app.route('/comictable', methods=['GET','POST'])
 def make_table():
     """input form test"""
     # file_loc = "C:\Users\Paola\Desktop\Comic Test\Forever Evil"
     file_loc = "C:\Users\Paola\Desktop\Comic Test\Batman Eternal"
 
-    comics = seed_comics.walk_files(file_loc)
+    comics = extract_comics.walk_files(file_loc)
     print 'Making Comic Table'
-    # comics = json.loads(comics)
-    # print comics
+
 
     return jsonify(comics)
 
 
 @app.route('/upload', methods=['POST'])
 def upload():
-    # print (request.json)
+
     print "Geting FileList from Client"
     if request.method == 'POST':
         comics = request.files['files']
-    # if request.method == 'POST':
+
         print comics
+        
     return comics
+
+
+"""
+###################################
+    LOGIN, SIGNUP, LOUGOUT
+###################################
+
+"""
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -149,6 +173,9 @@ def log_out():
         print "Logged out:", session
 
         return redirect("/")
+
+
+
 
 
 if __name__ == "__main__":
