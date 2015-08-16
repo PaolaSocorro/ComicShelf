@@ -51,6 +51,7 @@ class Book(db.Model):
     issue_number = db.Column(db.Integer, nullable=False)
     language = db.Column(db.String, nullable=True)
     publisher = db.Column(db.String, nullable=True)
+    file_name = db.Column(db.String, nullable=False)
 
     #DEFINE relationship to publisher
 

@@ -1,15 +1,20 @@
 from jinja2 import StrictUndefined
 
-from flask import Flask, render_template, redirect, request, flash, session, jsonify
+from flask import Flask, render_template, redirect, request,url_for, flash, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 
+from werkzeug import secure_filename
+
 from model import User, Publisher, connect_to_db, db
-import extract_comics, json
 
+import extract_comics, process_filenames, json, os
 
-
+UPLOAD_FOLDER = 'uploads/'
+ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif','bmp','tiff'])
+ # set(['cbr','cbz','cbt','cba','cb7'])
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 # print app
 
 # Required to use Flask sessions and the debug toolbar
@@ -18,6 +23,11 @@ app.secret_key = "ABC"
 # Normally, if you use an undefined variable in Jinja2, it fails silently.
 # This is horrible. Fix this so that, instead, it raises an error.
 app.jinja_env.undefined = StrictUndefined
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
 
 """
 ###################################
@@ -56,6 +66,8 @@ def make_table():
     file_loc = "C:\Users\Paola\Desktop\Comic Test\Batman Eternal"
 
     comics = extract_comics.walk_files(file_loc)
+    # comics = process_filenames.walk_files(files)
+
     print 'Making Comic Table'
 
 
@@ -65,13 +77,21 @@ def make_table():
 @app.route('/upload', methods=['POST'])
 def upload():
 
-    print "Geting FileList from Client"
-    if request.method == 'POST':
-        comics = request.files['files']
+    uploaded_files = request.files.getlist("file[]")
+    filenames = []
 
-        print comics
-        
-    return comics
+    for file in uploaded_files:
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+            filenames.append(filename)
+    return render_template('upload.html',filenames=filenames)
+
+
+@app.route('/upload/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
 
 """

@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h3>Comics n things</h3>
 
-<!-- <div><a href="/addcomics">Add Comics </a></div>
-
-<div><a href="/login">Log In </a></div>
-
-<div><a href="/signup">Sign Up </a></div> -->
+<br /><br />
+<form action="upload" method="post" enctype="multipart/form-data">
+        <input type="file" multiple name="file[]"><br /><br />
+        <input type="submit" value="Upload">
+</form>
 
 
 

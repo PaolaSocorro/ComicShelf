@@ -5,7 +5,7 @@ import re
 # root_dir = "C:\Users\Paola\Desktop\Comic Test"
 root_dir=""
 
-
+# import pdb; pdb.set_trace()
 
 
 def walk_files(root_dir):

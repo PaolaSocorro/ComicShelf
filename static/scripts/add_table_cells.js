@@ -50,39 +50,67 @@ $("#make_table").click(function(){
 });
 
 
-$(function() {
-    $('#upload_button').click(function() {
-        var form_data = new FormData($('#upload_comic')[0]);
-        $.ajax({
-            type: 'POST',
-            url: '/upload',
-            data: form_data,
-            contentType: false,
-            cache: false,
-            processData: false,
-            async: true,
-            success: function(data) {
-                console.log('Success!');
-                console.log(form_data);
-            },
-        });
+//GET FILES FROM USER, MAKE OBJECT WITH NAMES
+
+$(document).ready(function(){
+    // var fname={};
+    $('#open_files').change(function(e){
+        var files = this.files;
+        console.log(files);
+        // var comics = $.map(files,function(val){return val.name;});
+        // console.log(comics);
+        //MAKE OBJECT FILE OF FILE NAMES
+        var fname={};
+        for (var i=0; i<files.length;i++){
+            fname[i+1]=files[i].name;
+            // console.log(i);
+            // console.log(fname);
+
+        }
+        console.log(fname);
+
+
     });
+    // console.log(fname);
 });
+
+
+
+// function upload(){
+//     $.ajax({
+//         type: 'POST',
+//         url: '/upload'
+//         data: JSON.stringify()
+
+//     })
+
+// }
+
+
+// $("#upload_button").click(function(){
+    
+// });
+
 
 //DO MORE
 //https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications#Getting_information_about_selected_file(s)
-//HANDLES OPENING A FILE OR MULTIPLE FILES TO GET FILE OBJECT
-
-// $('#comicdrop').filedrop({
-//     paramname: 'file',
-//     maxfiles: 50,
-//     maxfilesize: 50,
-//     url: '/upload',
-//     uploadFinished:function(i,file,response){
-//         $.data(file).addClass('done');
-//         console.log(file);
-//     }
 
 
+// $(function() {
+//     $('#upload_button').click(function() {
+//         var form_data = new FormData($('#upload_comic')[0]);
+//         $.ajax({
+//             type: 'POST',
+//             url: '/upload',
+//             data: form_data,
+//             contentType: false,
+//             cache: false,
+//             processData: false,
+//             async: true,
+//             success: function(data) {
+//                 console.log('Success!');
+//                 console.log(form_data);
+//             },
+//         });
+//     });
 // });
-

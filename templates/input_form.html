@@ -65,11 +65,12 @@
     </div> -->
 
 
-<form action="" id="upload_comic" method="post" enctype="multipart/form-data">
+<form action="/upload" id="upload_comic" method="post" enctype="multipart/form-data">
     <fieldset>
         <label for="file">Select a file</label>
-        <input name="file" type="file" id="open_file">
+        <input type="file" id="open_files" name="files[]" multiple>
     </fieldset>
+    <br>
     <fieldset>
         <button id="upload_button" type="button">Upload</button>
     </fieldset>
