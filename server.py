@@ -4,17 +4,21 @@ from flask import Flask, render_template, redirect, request,url_for, flash, sess
 from flask_debugtoolbar import DebugToolbarExtension
 
 from werkzeug import secure_filename
-
 from model import User, Publisher, connect_to_db, db
+from pyunpack import Archive
+import extract_comics, process_filenames,parse_comics, json
+import os, sys
 
-import extract_comics, process_filenames, json, os
 
+USER_ROOT = r'C:/cygwin64/home/Paola/src/hbproject/'
 UPLOAD_FOLDER = 'uploads/'
-ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif','bmp','tiff'])
+ALLOWED_EXTENSIONS = set(['cbr','cbz','pdf', 'png', 'jpg', 'jpeg', 'gif','bmp','tiff'])
  # set(['cbr','cbz','cbt','cba','cb7'])
 
 app = Flask(__name__)
+
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
+app.config['USER_ROOT']=USER_ROOT
 # print app
 
 # Required to use Flask sessions and the debug toolbar
@@ -79,13 +83,44 @@ def upload():
 
     uploaded_files = request.files.getlist("file[]")
     filenames = []
+    path = ""
+    issue_path = ""
+    icover_path = ""
 
     for file in uploaded_files:
 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+            info = process_filenames.walk_files(filename)
+            #process filename, extract name and issue number
+            #to use for path
+            folder_name= info['comics'][0]['name']
+            issue_path= info['comics'][0]['issue_number']
+            # print "OUR PATHS" ,folder_name , issue_path
+            # path = NAME OF THE FOLDER WHERE ALL ISSUES ARE SAVED
+            path = UPLOAD_FOLDER + folder_name
+            path = os.path.join(USER_ROOT,path)
+            print "STRING PATH: ", path
+
+            if os.path.isdir(path) == False:
+                new_dir = os.makedirs(path)
+
+
+            file.save(os.path.join(path,filename))
+
             filenames.append(filename)
+
+        #UNPACK COMICS GET ISSUE PATH AND COVER ISSUE PATH in that order
+
+
+    ci_paths = parse_comics.unpack_zips(path)
+    issue_path = ci_paths[0]
+    print "STR ISSUE PATH:", issue_path
+    icover_path = ci_paths[1]
+    print "STR COVER PATH: ", icover_path
+
+    comic_info = process_filenames.walk_files(filenames)
+
     return render_template('upload.html',filenames=filenames)
 
 
