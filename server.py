@@ -83,11 +83,12 @@ def upload():
 
     uploaded_files = request.files.getlist("file[]")
     filenames = []
-    path = ""
-    issue_path = ""
-    icover_path = ""
+    cover_images = []
 
     for file in uploaded_files:
+        path = ""
+        issue_path = ""
+        icover_path = ""
 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
@@ -95,16 +96,15 @@ def upload():
             #process filename, extract name and issue number
             #to use for path
             folder_name= info['comics'][0]['name']
-            issue_path= info['comics'][0]['issue_number']
-            # print "OUR PATHS" ,folder_name , issue_path
+ 
             # path = NAME OF THE FOLDER WHERE ALL ISSUES ARE SAVED
             path = UPLOAD_FOLDER + folder_name
+            # import pdb; pdb.set_trace()
             path = os.path.join(USER_ROOT,path)
             print "STRING PATH: ", path
-
+            #CHECK IF PATH IS A DIR. IF NOT MAKE ONE.
             if os.path.isdir(path) == False:
                 new_dir = os.makedirs(path)
-
 
             file.save(os.path.join(path,filename))
 
@@ -112,12 +112,13 @@ def upload():
 
         #UNPACK COMICS GET ISSUE PATH AND COVER ISSUE PATH in that order
 
+        ci_paths = parse_comics.unpack_zips(path)
+        issue_path = ci_paths[0]
+        print "STR ISSUE PATH:", issue_path
+        icover_path = ci_paths[1]
+        print "STR COVER PATH: ", icover_path
+        cover_images.append(icover_path)
 
-    ci_paths = parse_comics.unpack_zips(path)
-    issue_path = ci_paths[0]
-    print "STR ISSUE PATH:", issue_path
-    icover_path = ci_paths[1]
-    print "STR COVER PATH: ", icover_path
 
     comic_info = process_filenames.walk_files(filenames)
 

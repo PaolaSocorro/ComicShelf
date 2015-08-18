@@ -128,7 +128,6 @@ class Publisher(db.Model):
 
     publisher_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(100), nullable=True)
-    # founded = db.Column(db.Integer, nullable=True)
 
 
 
@@ -159,7 +158,6 @@ class Author(db.Model):
     author_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
     author_name = db.Column(db.String(100), nullable=False)
-    # co_author = db.Column(db.String(100), nullable=False)#(Y/N) BOOLEAN VALUE
     gender = db.Column(db.String(20), nullable=True)
 
     book = db.relationship("Book",
