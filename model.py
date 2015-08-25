@@ -10,7 +10,8 @@ db = SQLAlchemy()
 
 #psql -h localhost -U postgres
 ################
-
+#TO DROP ALL TABLES USE:
+#psql -h localhost -U postgres < droptable.script
 
 ##############################################################################
 # Model definitions
@@ -45,6 +46,7 @@ class Book(db.Model):
 
     book_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     publisher_id = db.Column(db.Integer, db.ForeignKey('publishers.publisher_id'))  # FK to publishers table
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))  # FK to users table
     title = db.Column(db.String(200), nullable=False)
     release_date = db.Column(db.Date, nullable=True)
     year = db.Column(db.Integer, nullable=True)
@@ -52,17 +54,22 @@ class Book(db.Model):
     language = db.Column(db.String, nullable=True)
     publisher = db.Column(db.String, nullable=True)
     file_name = db.Column(db.String, nullable=False)
+    comicfolder_path = db.Column(db.String, nullable=False)
+    coverimage_path = db.Column(db.String, nullable=False)
 
     #DEFINE relationship to publisher
 
     publisher = db.relationship("Publisher",
                 backref=db.backref("books", order_by=book_id))
 
+    # user = db.relationship("User",
+    #         backref=db.backref("books", order_by=book_id))
+
 
 
 class Comment(db.Model):
-    """book/arc comments in app
-    TEST: ADD a comment to a book, and a story arc.
+    """book comments in app
+    TEST: ADD a comment to a book
     """
 
     __tablename__ = "comments"
@@ -70,7 +77,6 @@ class Comment(db.Model):
     comment_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))  # FK TO USER TABLE
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
-    arc_id = db.Column(db.Integer, db.ForeignKey('arcs.arc_id'))  # FK TO ARC TABLE
     comment = db.Column(db.String(1000), nullable=True)
 
     user = db.relationship("User",
@@ -79,8 +85,6 @@ class Comment(db.Model):
     book = db.relationship("Book",
                 backref=db.backref("comments", order_by=comment_id))
 
-    arc = db.relationship("Arc",
-                backref=db.backref("comments", order_by=comment_id))
 
 
 
@@ -104,7 +108,7 @@ class Bookmark(db.Model):
 
 class Rating(db.Model):
     """Ratings table
-    TEST: rate a book, and story arc
+    TEST: rate a book
     """
     __tablename__ = "ratings"
 
@@ -112,7 +116,6 @@ class Rating(db.Model):
     rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
     book_rating = db.Column(db.Integer, nullable=True)
-    arc_rating = db.Column(db.Integer, nullable=True)
 
     book = db.relationship("Book",
                 backref=db.backref("ratings", order_by=rating_id))
@@ -185,17 +188,6 @@ class Character(db.Model):
 ############
 
 
-class Arc(db.Model):
-    """Creates arc for several books.
-
-    TEST: creat an arc"""
-
-    __tablename__ = "arcs"
-
-    arc_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    name = db.Column(db.String(500), nullable=True)
-
-
 class Tag(db.Model):
     """Creates tag for a book.
 
@@ -232,10 +224,15 @@ class BookGenre(db.Model):
 
     bookgenre_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
+    genre_id = db.Column(db.Integer, db.ForeignKey('genres.genre_id'))  # FK TO GENRE TABLE
 
 
     book = db.relationship("Book",
             backref=db.backref("bookgenres", order_by=bookgenre_id))
+
+    genre = db.relationship("Genre",
+            backref=db.backref("bookgenres", order_by=bookgenre_id))
+
 
 
 class BookTag(db.Model):
@@ -247,25 +244,17 @@ class BookTag(db.Model):
 
     booktag_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id')) #FK TO BOOK TABLE
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.tag_id')) #FK TO TAG TABLE
+
 
 
     book = db.relationship("Book",
             backref=db.backref("booktags", order_by=booktag_id))
 
-
-class BookArc(db.Model):
-    """
-    Join table of books and their arcs
-    """
-
-    __tablename__ = "bookarcs"
-
-    bookarc_id = db.Column(db.Integer, autoincrement=True, primary_key=True)  # FK TO ARC TABLE
-    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))  # FK TO BOOK TABLE
+    tag = db.relationship("Tag",
+            backref=db.backref("booktags", order_by=booktag_id))
 
 
-    book = db.relationship("Book",
-                backref=db.backref("bookarcs", order_by=bookarc_id))
 
 
 ##########

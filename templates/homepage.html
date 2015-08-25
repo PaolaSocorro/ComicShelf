@@ -2,14 +2,99 @@
 {% block content %}
 
 
+{% if 'login_id' not in session %}
+<h3>Log In to see your ComicShelf</h3>
+{%endif%}
+
+
+{% if 'login_id' in session %}
 <br /><br />
 <form action="upload" method="post" enctype="multipart/form-data">
-        <input type="file" multiple name="file[]"><br /><br />
-        <input type="submit" value="Upload">
+    <!-- <input type="text" name="tags" placeholder="Tags"> -->
+    <select name="publishers">
+        {% for pub in publishers%}
+            <option value="{{pub.name}}">{{pub.name}}</option>
+        {%endfor%}
+    </select>
+    <select name="genres">
+    {% for gen in genres%}
+        <option value="{{gen.genre}}">{{gen.genre}}</option>
+    {%endfor%}
+    </select>
+    <label>Tags:</label>
+
+    <input type='tags' name="tags" placeholder="Separate tags by comas">
+    <br /><br />
+    <input type="file" multiple name="file[]">
+    <input type="submit" value="Upload">
+
+
 </form>
 
 
 
+    <div class="mix_controls">
+        <label>Filter:</label>
+        <button class="filter" data-filter="all">All</button>
+
+        <!-- <button class="filter" data-filter=".category-1">Category 1</button> -->
+        {%for book in mix_titles%}
+
+            <button class="filter" data-filter=".category-{{book}}">{{book}}</button>
+
+        {%endfor%} <!-- END OF FORLOOP IN MIX_CONTROLS --> 
+
+        <label>Sort:</label>
+
+        <button class="sort" data-sort="myorder:asc">Asc</button>
+        <button class="sort" data-sort="myorder:desc">Desc</button>
+
+    </div> <!-- END OF MIX CONTROLS DIV -->
+
+
+
+    <div id="Mix_Container" class ="mix_container" >
+
+<!--     {% if up_books is defined %}
+    value of up_books: {{ up_books }} -->
+
+    {%for book, pub in up_books%}
+
+        <div class="mix category-{{book.title}}" data-myorder="{{book.title}} - # {{book.issue_number}}">
+            <img class="img_thumb" src="{{book.coverimage_path}}">
+        </div>
+
+
+    {%endfor%}  <!-- END OF FOR LOOP WITH UP_BOOKS -->
+    <div class="gap"></div>
+    <div class="gap"></div>
+
+<!--     {% else %}
+    up_books is not defined -->
+
+<!--     {% endif %}  --><!-- END OF IF UP_BOOKS IS DEFINED -->
+
+
+
+
+<!--     {%if up_books is not defined%}
+    <div class="mix category-1" data-myorder="Issue 001"></div>
+    <div class="mix category-1" data-myorder="Issue 002"></div>
+    <div class="mix category-1" data-myorder="Issue 003"></div>
+    <div class="mix category-2" data-myorder="Issue 004"></div>
+    <div class="mix category-1" data-myorder="Issue 005"></div>
+    <div class="mix category-1" data-myorder="Issue 006"></div>
+    <div class="mix category-2" data-myorder="Issue 007"></div>
+    <div class="mix category-2" data-myorder="Issue 008"></div>
+    <div class="mix category-2" data-myorder="Issue 009"></div>
+    <div class="gap"></div>
+    <div class="gap"></div>           
+
+    {%endif%} -->
+
+    </div><!-- END OF MIX CONTAINER DIV -->
+
+{%endif%}   <!-- END OF JINJA IF LOGIN CHECK -->
 
 
 

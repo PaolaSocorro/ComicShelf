@@ -1,0 +1,14 @@
+\connect comicsdb;
+DROP TABLE artists,
+authors,
+bookgenres,
+bookmarks,
+books,
+booktags,
+characters,
+comments,
+genres,
+publishers,
+ratings,
+tags,
+users;

@@ -1,3 +1,7 @@
+
+
+
+
 var table = $("#form_table");
 var row = $("#table_row");
 var filelist;
@@ -74,43 +78,3 @@ $(document).ready(function(){
     // console.log(fname);
 });
 
-
-
-// function upload(){
-//     $.ajax({
-//         type: 'POST',
-//         url: '/upload'
-//         data: JSON.stringify()
-
-//     })
-
-// }
-
-
-// $("#upload_button").click(function(){
-    
-// });
-
-
-//DO MORE
-//https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications#Getting_information_about_selected_file(s)
-
-
-// $(function() {
-//     $('#upload_button').click(function() {
-//         var form_data = new FormData($('#upload_comic')[0]);
-//         $.ajax({
-//             type: 'POST',
-//             url: '/upload',
-//             data: form_data,
-//             contentType: false,
-//             cache: false,
-//             processData: false,
-//             async: true,
-//             success: function(data) {
-//                 console.log('Success!');
-//                 console.log(form_data);
-//             },
-//         });
-//     });
-// });

@@ -1,4 +1,4 @@
-from model import Publisher, connect_to_db, db
+from model import Tag,Genre,Publisher, connect_to_db, db
 from server import app
 from datetime import datetime
 # import os
@@ -20,6 +20,21 @@ def seed_publishers():
     pub_file.close()
 
 
+def seed_genres():
+    genre_file = open("seed_data/comic_genres.txt") # Open file
+
+    for line in genre_file:
+        #split into strings
+        line = line.rstrip()
+        genre = Genre(genre=line)
+
+        db.session.add(genre)
+    db.session.commit()
+
+    print "Genres seeded "
+    genre_file.close()
+
+
 if __name__ == "__main__":
     connect_to_db(app)
     print "Connected to db"
@@ -27,6 +42,7 @@ if __name__ == "__main__":
 
 
     seed_publishers()
+    seed_genres()
 
 
 

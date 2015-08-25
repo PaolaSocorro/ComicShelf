@@ -20,8 +20,6 @@ def make_files(root_dir):
 
 
 
-
-
 def walk_files(files):
     """walk the specified directory and get the file names within that directory"""
 
@@ -49,8 +47,8 @@ def walk_files(files):
         FIX ME: REMOVE _ and - from name etc.
         """
 
-        print type(comic)
-        print "A file: ", comic
+        # print type(comic)
+        # print "A file: ", comic
         n = re.compile(r'([a-zA-Z-:_(\s)]+)')
         y = re.compile(r'(\d\d\d\d)')
         iss = re.compile(r'(.art\s\d)|(.art\d)|(.art_\d)|(\d\d\d)|(\d\d)|(\d)')

@@ -7,26 +7,47 @@
           href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>
 
 </head>
 
-<body>
+<body class="smenu-push">
 
+  <button id="showLeftPush">Show/Hide Left Push Menu</button>
+  
+<div id="container">
 
   <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Comic Shelf</a></li>
-                    <li id="login_btn"><a href="/login">Login</a></li>
-                    <li id="logout_btn"><a href="/logout">Logout</a></li>
-                    <li id="signup_btn"><a href="/signup">Sign Up</a></li>
-                    <!-- <li><a href="/addcomics">Add Comics</a></li> -->
-                </ul>
-                <ul class="nav navbar-nav pull-right">
-                    <li class="nav pull-right"><a href="#">Profile</a></li>
-                    <!-- <li><a href="#">Log In</a></li> -->
-                    
-                </ul>
-            </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Comic Shelf</a></li>
+        {% if 'login_id' not in session %}
+        <li id="signup_btn"><a href="/signup">Sign Up</a></li>
+        <li id="login_btn"><a href="/login">Login</a></li>
+        {% endif %}
+        {% if 'login_id' in session %}
+        <li id="logout_btn"><a href="/logout">Logout</a></li>
+        {% endif %}
+        <!-- <li><a href="/addcomics">Add Comics</a></li> -->
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        {% if 'login_id' in session %}
+        <li class="nav pull-right"><a href="#">Profile</a></li>
+        {% endif %}
+        <!-- <li><a href="#">Log In</a></li> -->
+          
+      </ul>
+  </div>
+
+  <nav class="smenu smenu-vertical smenu-left" id="smenu-s2">
+    <h3>Menu</h3>
+    <a href="#">Celery seakale</a>
+    <a href="#">Dulse daikon</a>
+    <a href="#">Zucchini garlic</a>
+    <a href="#">Catsear azuki bean</a>
+    <a href="#">Dandelion bunya</a>
+    <a href="#">Rutabaga</a>
+  </nav>
+
 
 
     {% with messages = get_flashed_messages() %}
@@ -40,8 +61,15 @@
 
   {% block content %} put your content here {% endblock %}
 
-  <script type="text/javascript" src="static/scripts/jquery.filedrop.js"></script>
+  <script type="text/javascript" src = "static/scripts/sidebar.js"></script>
+
+  <script type="text/javascript" src = "static/scripts/mixitup_comics.js"></script>
+
+ <!--  // <script type="text/javascript" src="static/scripts/jquery.filedrop.js"></script> -->
   <script type="text/javascript" src="static/scripts/add_table_cells.js"></script>
+
+<!-- end of main div container -->
+</div>  
 
 </body>
 </html>
