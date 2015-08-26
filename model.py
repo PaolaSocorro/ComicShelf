@@ -46,8 +46,9 @@ class Book(db.Model):
 
     book_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     publisher_id = db.Column(db.Integer, db.ForeignKey('publishers.publisher_id'))  # FK to publishers table
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))  # FK to users table
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))  # FK to users table
     title = db.Column(db.String(200), nullable=False)
+    title_short = db.Column(db.String(200),nullable=False)
     release_date = db.Column(db.Date, nullable=True)
     year = db.Column(db.Integer, nullable=True)
     issue_number = db.Column(db.Integer, nullable=False)
@@ -62,8 +63,8 @@ class Book(db.Model):
     publisher = db.relationship("Publisher",
                 backref=db.backref("books", order_by=book_id))
 
-    # user = db.relationship("User",
-    #         backref=db.backref("books", order_by=book_id))
+    user = db.relationship("User",
+            backref=db.backref("books", order_by=book_id))
 
 
 
@@ -131,6 +132,7 @@ class Publisher(db.Model):
 
     publisher_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(100), nullable=True)
+    name_short = db.Column(db.String(100), nullable=True)
 
 
 

@@ -168,9 +168,12 @@ background: #258ecd;
   left: 0;
 }
 .smenu-left{
-  left: -240px;
+  right: -200px;
 }
-.smenu, .smenu-push{
+.smenu-left .smenu-open{
+  right: 0px;
+}
+.smenu .smenu-push .smenu-open{
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   transition: all 0.3s ease;

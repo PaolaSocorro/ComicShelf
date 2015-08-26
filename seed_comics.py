@@ -11,7 +11,8 @@ def seed_publishers():
     for line in pub_file:
         #split into strings
         line = line.rstrip()
-        publisher = Publisher(name=line)
+        short = line.replace(" ", "").lower()
+        publisher = Publisher(name=line,name_short=short)
 
         db.session.add(publisher)
     db.session.commit()

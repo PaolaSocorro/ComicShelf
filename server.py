@@ -56,8 +56,8 @@ def index():
     # mix_controls = db.session.query(Publisher.name).join(Book).distinct().all()
 # .replace(" ", "")
     for book,pub in up_books:
-        mix_publishers.add(str(pub.name))
-        mix_titles.add(str(book.title))
+        mix_publishers.add(str(pub.name_short))
+        mix_titles.add(str(book.title_short))
 
     # print "UP_BOOK TYPE", type(up_books)
     print mix_publishers
@@ -162,7 +162,9 @@ def upload():
             print "STR COVER PATH: ", icover_path
 
             #COMMIT
-            book = Book(publisher_id=pub_id.publisher_id,title=folder_name,year=year,issue_number=issue_number,language=lang,file_name=file_name,comicfolder_path=issue_path,coverimage_path=icover_path)
+            short_title = folder_name.replace(" ", "").lower()
+            user = session['login_id'][2]
+            book = Book(publisher_id=pub_id.publisher_id,user_id=user,title=folder_name,title_short=short_title,year=year,issue_number=issue_number,language=lang,file_name=file_name,comicfolder_path=issue_path,coverimage_path=icover_path)
             # genre = BookGenre()
             db.session.add(book)
             print 'ADDED TO SESSION'
@@ -229,6 +231,7 @@ def login_form():
 
             session["login_id"] = credentials 
             print "SESSION: ", session
+            print session['login_id'][2]
             flash('You were successfully logged in')
             # return redirect("/users/%s" % user.user_id) # REDIRECT TO PROFILE PAGE.FIX
             return redirect ("/")
