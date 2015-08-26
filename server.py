@@ -182,6 +182,31 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
 
+
+
+
+"""
+###################################
+    PROFILE
+###################################
+
+"""
+
+
+
+@app.route('/users/<int:id>')
+def user_profile(id):
+    """Show user profile
+   
+    """
+    this_user = User.query.filter_by(user_id=id).one()
+
+
+
+    return render_template("user_profile.html")
+
+
+
 """
 ###################################
     LOGIN, SIGNUP, LOUGOUT
@@ -233,8 +258,8 @@ def login_form():
             print "SESSION: ", session
             print session['login_id'][2]
             flash('You were successfully logged in')
-            # return redirect("/users/%s" % user.user_id) # REDIRECT TO PROFILE PAGE.FIX
-            return redirect ("/")
+            return redirect("/users/%s" % user.user_id) # REDIRECT TO PROFILE PAGE.FIX
+            # return redirect ("/")
 
 
     else: #TAKE user to login page if route process a  GET request

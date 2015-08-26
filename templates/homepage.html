@@ -43,6 +43,11 @@
             <button class="filter" data-filter=".category-{{book}}">{{book}}</button>
 
         {%endfor%} <!-- END OF FORLOOP IN MIX_CONTROLS --> 
+        {%for pub in mix_publishers%}
+
+            <button class="filter" data-filter=".category-{{pub}}">{{pub}}</button>
+
+        {%endfor%} <!-- END OF FORLOOP IN MIX_CONTROLS --> 
 
         <label>Sort:</label>
 
@@ -60,7 +65,7 @@
 
     {%for book, pub in up_books%}
 
-        <div class="mix category-{{book.title_short}}" data-myorder="{{book.title}} - # {{book.issue_number}}">
+        <div class="mix category-{{book.title_short}} category-{{pub.name_short}}" data-myorder="{{book.title}} - # {{book.issue_number}}">
             <img class="img_thumb" src="{{book.coverimage_path}}">
         </div>
 
