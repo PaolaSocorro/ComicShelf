@@ -56,8 +56,10 @@ def index():
     # mix_controls = db.session.query(Publisher.name).join(Book).distinct().all()
 # .replace(" ", "")
     for book,pub in up_books:
-        mix_publishers.add(str(pub.name_short))
-        mix_titles.add(str(book.title_short))
+        pubs = (str(pub.name_short),pub.name)
+        titles = (str(book.title_short),book.title)
+        mix_publishers.add(pubs)
+        mix_titles.add(titles)
 
     # print "UP_BOOK TYPE", type(up_books)
     print mix_publishers
@@ -71,10 +73,7 @@ def index():
     return render_template("homepage.html",publishers=publishers,genres=genres,books=books,up_books=up_books, mix_titles=mix_titles, mix_publishers=mix_publishers)
 
 
-@app.route('/addcomics')
-def inputform():
 
-    return render_template("input_form.html")
 
 
 
@@ -85,6 +84,21 @@ def inputform():
 ###################################
 
 """
+
+@app.route('/open_book',methods=['GET','POST'])
+def open_books():
+
+    if request.method == 'POST':
+        path = request.form['random']
+
+        pages = extract_comics.get_pages(path)
+        print "MY PATH: ", path
+        print pages
+        print "******"
+        print jsonify(pages)
+        return jsonify(pages)
+
+    return render_template('profile.html')
 
 
 @app.route('/comictable', methods=['GET','POST'])
@@ -203,7 +217,7 @@ def user_profile(id):
 
 
 
-    return render_template("user_profile.html")
+    return render_template("profile.html")
 
 
 
@@ -275,6 +289,7 @@ def signup_form():
     """
 
     if request.method == 'POST':
+
         name = request.form.get("name")
         print name
         email = request.form.get("email")
@@ -283,6 +298,13 @@ def signup_form():
         print password
         age = request.form.get("age")
         gender = request.form.get("gender")
+
+
+        user = User.query.filter_by(email=email).first()
+        c_name = user.name
+        c_email = user.email
+
+        # if
 
         person = User(name=name, email=email, password=password, age=age, gender=gender)
 

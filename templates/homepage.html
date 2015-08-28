@@ -2,104 +2,159 @@
 {% block content %}
 
 
-{% if 'login_id' not in session %}
-<h3>Log In to see your ComicShelf</h3>
-{%endif%}
+    {% if 'login_id' not in session %}
+    <h3>Log In to see your ComicShelf</h3>
+    {%endif%}
 
 
-{% if 'login_id' in session %}
-<br /><br />
-<form action="upload" method="post" enctype="multipart/form-data">
-    <!-- <input type="text" name="tags" placeholder="Tags"> -->
-    <select name="publishers">
-        {% for pub in publishers%}
-            <option value="{{pub.name}}">{{pub.name}}</option>
-        {%endfor%}
-    </select>
-    <select name="genres">
-    {% for gen in genres%}
-        <option value="{{gen.genre}}">{{gen.genre}}</option>
-    {%endfor%}
-    </select>
-    <label>Tags:</label>
+    {% if 'login_id' in session %}
+        <br /><br />
+        <form action="upload" method="post" enctype="multipart/form-data">
+            <!-- <input type="text" name="tags" placeholder="Tags"> -->
+            <div class="input-group">
+                <label>Publishers:</label>
+                <select name="publishers">
+                    {% for pub in publishers%}
+                        <option value="{{pub.name}}">{{pub.name}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Genres:</label>
+                <select name="genres">
+                {% for gen in genres%}
+                    <option value="{{gen.genre}}">{{gen.genre}}</option>
+                {%endfor%}
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Tags:</label>
 
-    <input type='tags' name="tags" placeholder="Separate tags by comas">
-    <br /><br />
-    <input type="file" multiple name="file[]">
-    <input type="submit" value="Upload">
+                <input type='tags' name="tags" placeholder="Separate tags by comas">
+                <br /><br />
+            </div>
 
+            <div class="btn-group" role="group" aria-label="...">
+                <span class="btn btn-default btn-file">
+                    <input type="file" multiple name="file[]">
+                </span>
 
-</form>
+                <input class="btn btn-default btn-primary"  type="submit" value="  Upload Comics ">
+            </div>
 
-
-
-    <div class="mix_controls">
-        <label>Filter:</label>
-        <button class="filter" data-filter="all">All</button>
-
-        <!-- <button class="filter" data-filter=".category-1">Category 1</button> -->
-        {%for book in mix_titles%}
-
-            <button class="filter" data-filter=".category-{{book}}">{{book}}</button>
-
-        {%endfor%} <!-- END OF FORLOOP IN MIX_CONTROLS --> 
-        {%for pub in mix_publishers%}
-
-            <button class="filter" data-filter=".category-{{pub}}">{{pub}}</button>
-
-        {%endfor%} <!-- END OF FORLOOP IN MIX_CONTROLS --> 
-
-        <label>Sort:</label>
-
-        <button class="sort" data-sort="myorder:asc">Asc</button>
-        <button class="sort" data-sort="myorder:desc">Desc</button>
-
-    </div> <!-- END OF MIX CONTROLS DIV -->
-
-
-
-    <div id="Mix_Container" class ="mix_container" >
-
-<!--     {% if up_books is defined %}
-    value of up_books: {{ up_books }} -->
-
-    {%for book, pub in up_books%}
-
-        <div class="mix category-{{book.title_short}} category-{{pub.name_short}}" data-myorder="{{book.title}} - # {{book.issue_number}}">
-            <img class="img_thumb" src="{{book.coverimage_path}}">
-        </div>
-
-
-    {%endfor%}  <!-- END OF FOR LOOP WITH UP_BOOKS -->
-    <div class="gap"></div>
-    <div class="gap"></div>
-
-<!--     {% else %}
-    up_books is not defined -->
-
-<!--     {% endif %}  --><!-- END OF IF UP_BOOKS IS DEFINED -->
+        </form> <!-- /.FORM -->
 
 
 
 
-<!--     {%if up_books is not defined%}
-    <div class="mix category-1" data-myorder="Issue 001"></div>
-    <div class="mix category-1" data-myorder="Issue 002"></div>
-    <div class="mix category-1" data-myorder="Issue 003"></div>
-    <div class="mix category-2" data-myorder="Issue 004"></div>
-    <div class="mix category-1" data-myorder="Issue 005"></div>
-    <div class="mix category-1" data-myorder="Issue 006"></div>
-    <div class="mix category-2" data-myorder="Issue 007"></div>
-    <div class="mix category-2" data-myorder="Issue 008"></div>
-    <div class="mix category-2" data-myorder="Issue 009"></div>
-    <div class="gap"></div>
-    <div class="gap"></div>           
 
-    {%endif%} -->
 
-    </div><!-- END OF MIX CONTAINER DIV -->
 
-{%endif%}   <!-- END OF JINJA IF LOGIN CHECK -->
+        <div class="mix_controls">
+            <label>Filter:</label>
+            <button class="filter" data-filter="all">All</button>
+
+            <!-- <button class="filter" data-filter=".category-1">Category 1</button> -->
+            {%for book in mix_titles%}
+
+                <button class="filter" data-filter=".category-{{book[0]}}">{{book[1]}}</button>
+
+            {%endfor%} <!-- END OF FORLOOP IN MIX_CONTROLS --> 
+            {%for pub in mix_publishers%}
+
+                <button class="filter" data-filter=".category-{{pub[0]}}">{{pub[1]}}</button>
+
+            {%endfor%} <!-- END OF FORLOOP IN MIX_CONTROLS --> 
+
+            <label>Sort:</label>
+
+            <button class="sort" data-sort="myorder:asc">Asc</button>
+            <button class="sort" data-sort="myorder:desc">Desc</button>
+
+        </div> <!-- END OF MIX CONTROLS DIV -->
+
+
+
+        <div id="Mix_Container" class ="mix_container" >
+
+
+        {%for book, pub in up_books%}
+
+            <div class="mix category-{{book.title_short}} category-{{pub.name_short}} comic_div" data-myorder="{{book.title}} - # {{book.issue_number}}" >
+                <a href= "#" data-target="#myModal" class="comicopen" data-show="modal" role="button"><img class="img_thumb" alt="{{book.title}} - Issue: {{book.issue_number}}" src="{{book.coverimage_path}}" data-source="{{book.comicfolder_path}}"></a>
+            </div>
+
+
+        {%endfor%}  <!-- END OF FOR LOOP WITH UP_BOOKS -->
+        <div class="gap"></div>
+        <div class="gap"></div>
+
+
+        </div><!-- END OF MIX CONTAINER DIV -->
+
+    {%endif%}   <!-- END OF JINJA IF LOGIN CHECK -->
+
+
+<!-- Modal -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div> <!-- /.MODAL-HEADER -->
+          <div class="modal-body">
+
+            <!-- <img class="comicImg" src="" style="width: 100%;"> -->
+            <div id="imgInModal">
+                <!-- <p class="para">things</p> -->
+                <form class="open_comic" action="/open_book" method="POST" >
+                    <input type='hidden' name="random" id='modal_input' >
+                </form>
+            </div>
+
+
+    <!--    _________________________________
+            CAROUSEL IN MODAL 
+            _____________________________________
+
+     -->
+            <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                      <!-- Indicators -->
+              <ol class="carousel-indicators" id="comic_viewer">
+
+              </ol>
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox">
+            
+              </div>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div> <!-- /.END OF CAROUSEL -->
+
+
+          </div> <!-- /.MODAL-BODY -->
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+          </div> <!-- /.MODAL-FOOTER -->
+        </div><!-- /.MODAL-CONTENT -->
+      </div> <!-- /.MODAL-DIALOG -->
+    </div> <!-- /.MODAL -->
+
+
 
 
 

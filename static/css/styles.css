@@ -191,7 +191,19 @@ background: #258ecd;
 
 
 
+/*CAROUSEL CHANGE THIS LATER*/
+
+.carousel-inner {
+  width: 20%;
+}
 
 
+/* Shrink wrap strategy 1 */
+.easyzoom {
+    float: left;
+}
+.easyzoom img {
+    display: block;
+}
 
 
