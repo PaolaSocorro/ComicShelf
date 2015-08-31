@@ -51,10 +51,12 @@ def index():
     genres = Genre.query.all()
     books = Book.query.all()
     # print "Book TYPE", type(books)
+    # loggedin_user = session['login_id'][2]
+    # print "USER LOGGED IN",loggedin_user
 
     up_books = db.session.query(Book,Publisher).join(Publisher).all()
-    # mix_controls = db.session.query(Publisher.name).join(Book).distinct().all()
-# .replace(" ", "")
+
+
     for book,pub in up_books:
         pubs = (str(pub.name_short),pub.name)
         titles = (str(book.title_short),book.title)
@@ -62,8 +64,8 @@ def index():
         mix_titles.add(titles)
 
     # print "UP_BOOK TYPE", type(up_books)
-    print mix_publishers
-    print mix_titles
+    # print mix_publishers
+    # print mix_titles
     # print up_books
     # for book in mix_controls:
     #     print book
@@ -87,6 +89,9 @@ def index():
 
 @app.route('/open_book',methods=['GET','POST'])
 def open_books():
+    """
+    Open Comic book 
+    """
 
     if request.method == 'POST':
         path = request.form['random']
@@ -101,23 +106,12 @@ def open_books():
     return render_template('profile.html')
 
 
-@app.route('/comictable', methods=['GET','POST'])
-def make_table():
-    """input form test"""
-    # file_loc = "C:\Users\Paola\Desktop\Comic Test\Forever Evil"
-    file_loc = "C:\Users\Paola\Desktop\Comic Test\Batman Eternal"
-
-    comics = extract_comics.walk_files(file_loc)
-    # comics = process_filenames.walk_files(files)
-
-    print 'Making Comic Table'
-
-
-    return jsonify(comics)
-
 
 @app.route('/upload', methods=['POST'])
 def upload():
+    """
+    upload files 
+    """
 
     uploaded_files = request.files.getlist("file[]")
     filenames = []
@@ -185,15 +179,16 @@ def upload():
     # comic_info = process_filenames.walk_files(filenames)
     db.session.commit()
     print 'ADDED TO DATABASE'
-    return render_template('upload.html',filenames=filenames)
+    return redirect ('/')
+    # return render_template('upload.html',filenames=filenames)
 
 
-@app.route('/upload/<filename>')
-def uploaded_file(filename):
+# @app.route('/upload/<filename>')
+# def uploaded_file(filename):
 
 
 
-    return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
+#     return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
 
 
@@ -253,8 +248,9 @@ def login_form():
 
         user = User.query.filter_by(email=email).first()
         u_id = user.user_id
+        name = user.name
 
-        credentials = (email, password, u_id)
+        credentials = (email, password, u_id, name)
 
         print user.user_id, user.name
         # print user
@@ -271,8 +267,9 @@ def login_form():
             session["login_id"] = credentials 
             print "SESSION: ", session
             print session['login_id'][2]
-            flash('You were successfully logged in')
-            return redirect("/users/%s" % user.user_id) # REDIRECT TO PROFILE PAGE.FIX
+            # flash('You were successfully logged in')
+            return redirect("/")
+            # return redirect("/users/%s" % user.user_id) # REDIRECT TO PROFILE PAGE.FIX
             # return redirect ("/")
 
 

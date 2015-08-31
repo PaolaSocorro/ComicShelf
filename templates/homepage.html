@@ -2,53 +2,11 @@
 {% block content %}
 
 
-    {% if 'login_id' not in session %}
-    <h3>Log In to see your ComicShelf</h3>
-    {%endif%}
-
 
     {% if 'login_id' in session %}
         <br /><br />
-        <form action="upload" method="post" enctype="multipart/form-data">
-            <!-- <input type="text" name="tags" placeholder="Tags"> -->
-            <div class="input-group">
-                <label>Publishers:</label>
-                <select name="publishers">
-                    {% for pub in publishers%}
-                        <option value="{{pub.name}}">{{pub.name}}</option>
-                    {%endfor%}
-                </select>
-            </div>
-            <div class="input-group">
-                <label>Genres:</label>
-                <select name="genres">
-                {% for gen in genres%}
-                    <option value="{{gen.genre}}">{{gen.genre}}</option>
-                {%endfor%}
-                </select>
-            </div>
-            <div class="input-group">
-                <label>Tags:</label>
 
-                <input type='tags' name="tags" placeholder="Separate tags by comas">
-                <br /><br />
-            </div>
-
-            <div class="btn-group" role="group" aria-label="...">
-                <span class="btn btn-default btn-file">
-                    <input type="file" multiple name="file[]">
-                </span>
-
-                <input class="btn btn-default btn-primary"  type="submit" value="  Upload Comics ">
-            </div>
-
-        </form> <!-- /.FORM -->
-
-
-
-
-
-
+<!-- MIXITUP CONTAINER -->
 
         <div class="mix_controls">
             <label>Filter:</label>
@@ -95,15 +53,17 @@
     {%endif%}   <!-- END OF JINJA IF LOGIN CHECK -->
 
 
-<!-- Modal -->
+<!-- MODAL COMIC VIEWER -->
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+            <button id="magnify" type="button" class="btn btn-default" aria-label="Zoom"><i class="fa fa-search"></i></button>
             <h4 class="modal-title" id="myModalLabel">Modal title</h4>
           </div> <!-- /.MODAL-HEADER -->
+
           <div class="modal-body">
 
             <!-- <img class="comicImg" src="" style="width: 100%;"> -->
@@ -142,14 +102,15 @@
               </a>
             </div> <!-- /.END OF CAROUSEL -->
 
+<!-- <i class="fa fa-angle-double-left"></i> -->
 
           </div> <!-- /.MODAL-BODY -->
 
-          <div class="modal-footer">
+ <!--          <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 
-          </div> <!-- /.MODAL-FOOTER -->
+          </div>  --><!-- /.MODAL-FOOTER -->
         </div><!-- /.MODAL-CONTENT -->
       </div> <!-- /.MODAL-DIALOG -->
     </div> <!-- /.MODAL -->

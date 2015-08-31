@@ -4,10 +4,68 @@
   box-sizing: border-box;
 }
 
-body, button{
-  font-family: 'Helvetica Neue', arial, sans-serif;
+
+
+body, button, h1,h2,h3,h4,h5,a, .modal-title{
+  /*font-family: 'Helvetica Neue', arial, sans-serif;*/
+  font-family: 'Righteous', cursive;
+  font-size: 1.1em; 
+}
+input, select, label, textarea,p, .filter, .mix, .sideMenuWrapper{
+  font-family: 'Signika', sans-serif;
+}
+.navbar-text{
+  color:#A3A3A3;
+  font-size: 1.1em;
 }
 
+.navbar-link{
+  padding-left: 7px;
+}
+
+#upload_text{
+  display: inline-block;
+  font-family: 'Righteous', cursive;
+}
+
+.modal-title{
+  text-align: center;
+}
+
+.home_title{
+  font-family: 'Righteous', cursive;
+  font-size: 2.2em;
+}
+
+.sideTrigger{
+  right: 10px;
+  font-size: 1.5em;
+}
+
+
+#navbar{
+   background-color: #292c2f;
+   padding: 1%;
+   margin:-10px;
+}
+#navbar a{
+   color:  #ffffff;
+
+}
+.navbar .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #292c2f;
+    /*color: #FFC0CB;*/
+}
+
+
+/*.login-form{
+  float: none;
+  margin: 0 auto;
+}*/
+
+
+
+/*Mixitup */
 .img_thumb {
   max-width: 100%;
   max-height: 100%;
@@ -20,8 +78,9 @@ body, button{
 }
 
 label{
-  font-weight: 300;
+  /*font-weight: 300;*/
   margin: 0 .4em 0 0;
+  font-size: 1.2em;
 }
 
 button{
@@ -51,7 +110,7 @@ button + label{
 .mix_container{
   padding: 2% 2% 0;
   text-align: justify;
-  font-size: 0.1px;
+  font-size: 1em;
   background: #68b8c4;
   
   -webkit-backface-visibility: hidden;
@@ -115,78 +174,41 @@ button + label{
   }
 }
 
+.username-link{
+  padding-right: 30px;
+}
 
 /*SLIDE IN UPLOADS MENU SIDEBAR*/
 
-.smenu{
-  background: #47a3da;
+.sideMenu{
+  font-family: Arial, Helvetica, sans-serif;
+  /*float: left;*/
+  width: 300px;
+  top: 80px;
   position: fixed;
-}
-
-.smenu h3{
-  color: #afdefa;
-  font-size: 1.9em;
-  padding: 20px;
-  margin: 0;
-  font-weight: 300;
-  background: #0d77b6;
-}
-
-.smenu a{
-  display: block;
-  color: #fff;
-  font-size: 1.1em;
-  font-weight: 300;
-}
-
-.smenu a:hover{
-background: #258ecd;
-}
-.smenu a:active{
-  background: #afdefa;
-  color: #47a3da;
-}
-
-/*Sidebar Menu Orientation*/
-
-.smenu-vertical{
-  width: 240px;
+  z-index: 9999;
+  right: -300px;
   height: 100%;
-  top: 0;
-  z-index: 1000;
-}
-.smenu-vertical a{
-  border-bottom: 1px solid #258ecd;
-  padding: 1em;
+  /*width: 300px;*/
+  background: #FFF;
+
+  -webkit-transition: all 400ms ease;
+  -moz-transition: all 400ms ease;
+  -ms-transition: all 400ms ease;
+  -o-transition: all 400ms ease;
+  transition: all 400ms ease;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
-/*Sidebar Push to the left from right side*/
-
-.smenu-push{
-  overflow-x: hidden;
-  position: relative;
-  left: 0;
-}
-.smenu-left{
-  right: -240px;
-}
-.smenu-left .smenu-open{
-  right: 0px;
-}
-.smenu .smenu-push .smenu-open{
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+.sideMenuWrapper{
+  padding: 30px;
 }
 
-@media screen and(max-height: 26em){
-  .smenu-vertical{
-    font-size: 90%;
-    width: 190px;
-  }
-  .smenu-left{
-    left: -190px;
-  }
+.sideOpen .sideMenu {
+  right: 0;
 }
 
 
@@ -197,13 +219,97 @@ background: #258ecd;
   width: 20%;
 }
 
-
-/* Shrink wrap strategy 1 */
-.easyzoom {
-    float: left;
-}
-.easyzoom img {
-    display: block;
+.carousel-control{
+  margin: 0 auto;
 }
 
+/*
+.left .carousel-control{z-index: 9999}
 
+.right .carousel-control{z-index: 9999}*/
+
+.zoomContainer{ z-index: 9000;}
+.zoomWindow{ z-index: 9000;}
+/*
+##########################
+###########################*/
+
+/*FOOTER*/
+/*#################*/
+
+.footer-distributed{
+  position:absolute;
+  /*bottom: 0;*/
+  background-color: #292c2f;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: normal 14px sans-serif;
+
+  padding: 45px 50px;
+  margin-top: 80px;
+}
+
+.footer-distributed .footer-left p{
+  color:  #8f9296;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Footer links */
+
+.footer-distributed p.footer-links{
+  font-size:16px;
+  font-weight: bold;
+  color:  #ffffff;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.footer-distributed p.footer-links a{
+  display:inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color:  inherit;
+}
+
+.footer-distributed .footer-right{
+  float: right;
+  margin-top: 6px;
+  max-width: 180px;
+}
+
+.footer-distributed .footer-right a{
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background-color:  #33383b;
+  border-radius: 2px;
+
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+
+  margin-left: 3px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 600px) {
+
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-right{
+    text-align: center;
+  }
+
+  .footer-distributed .footer-right{
+    float: none;
+    margin: 0 auto 20px;
+  }
+
+  .footer-distributed .footer-left p.footer-links{
+    line-height: 1.8;
+  }
+}

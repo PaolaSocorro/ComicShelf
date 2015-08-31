@@ -3,7 +3,12 @@
 <head>
   <title>Comics</title>
   <link rel="stylesheet" href="static/css/styles.css" />
+  <link rel="stylesheet" href="static/css/bootstrap-select.min.css" />
   <link rel="stylesheet" href="static/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
 
 <!--   <link rel="stylesheet"
           href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css"/> -->
@@ -11,10 +16,8 @@
   <!-- // <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> -->
   <script src="static/scripts/jquery-ui.js"></script>
   <script src="static/scripts/jquery.mixitup.min.js"></script> 
-  <script src="static/scripts/jquery.zoom.min.js"></script> 
-  <script src="static/scripts/wheelzoom.js"></script>
-  <script src="static/scripts/easyzoom.js"></script>  
-
+  <script src="static/scripts/jquery.elevateZoom-3.0.8.min.js"></script>
+  <script src="static/scripts/bootstrap-select.min.js"></script>
   <script src="static/bootstrap/js/bootstrap.min.js"></script>
 
 
@@ -26,11 +29,12 @@
 
 <body class="smenu-push">
 
-<div id="container">
+<div id="container ">
 
-  <div id="navbar" class="navbar-collapse collapse">
+
+    <div id="navbar" class="navbar navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Comic Shelf</a></li>
+        <li class="active home_title"><a href="/">ComicShelf</a></li>
         {% if 'login_id' not in session %}
         <li id="signup_btn"><a href="/signup">Sign Up</a></li>
         <li id="login_btn"><a href="/login">Login</a></li>
@@ -42,27 +46,19 @@
       </ul>
       <ul class="nav navbar-nav pull-right">
         {% if 'login_id' in session %}
-        <li class="nav pull-right"><a href="/users/{{session['login_id'][2]}}">Profile</a></li>
+        <li><p class="navbar-text navbar-right username-link">Signed in as <a href="/users/{{session['login_id'][2]}}" class="navbar-link">{{session['login_id'][3]}}</a></p></li>
+        <li> </li>
+        <li><a href="#" class="sideTrigger"><i class="fa fa-upload"></i></a></li>
         {% endif %}
-        <!-- <li><a href="#">Log In</a></li> -->
-          
       </ul>
-  </div>
+    </div>  <!-- /.END OF NAVBAR -->
+
+
+
 
     {% if 'login_id' not in session %}
     <h3>Log In to see your ComicShelf</h3>
     {%endif%}
-
-  <nav class="smenu smenu-vertical smenu-left" id="smenu-s2">
-    <h3>Menu</h3>
-    <a href="#">Celery seakale</a>
-    <a href="#">Dulse daikon</a>
-    <a href="#">Zucchini garlic</a>
-    <a href="#">Catsear azuki bean</a>
-    <a href="#">Dandelion bunya</a>
-    <a href="#">Rutabaga</a>
-  </nav>
-
 
 
     {% with messages = get_flashed_messages() %}
@@ -74,9 +70,11 @@
     {% endwith %}
 
 
+
+
+
   {% block content %} put your content here {% endblock %}
 
-  <script type="text/javascript" src = "static/scripts/sidebar.js"></script>
 
   <script type="text/javascript" src = "static/scripts/mixitup_comics.js"></script>
   
@@ -87,5 +85,92 @@
 <!-- end of main div container -->
 </div>  
 
+<footer class="footer-distributed">
+
+      <div class="footer-right">
+
+        <a href="https://www.facebook.com/AgentR3D"><i class="fa fa-facebook"></i></a>
+        <a href="https://twitter.com/paromi"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/paolasocorro"><i class="fa fa-linkedin"></i></a>
+        <a href="https://github.com/paolasocorro"><i class="fa fa-github"></i></a>
+
+      </div>
+
+      <div class="footer-left">
+
+        <p class="footer-links">
+          <a href="/">Home</a>
+          ·
+          <a href="https://girlncode.wordpress.com/">Tech Blog</a>
+          ·
+          <a href="http://nightowli.tumblr.com/"http://nightowli.tumblr.com/>Art Blog</a>
+          ·
+          <a href="pao.socorro@gmail.com">Contact</a>
+        </p>
+
+        <p>Paola Socorro &copy; 2015</p>
+      </div>
+
+</footer>
+
+
+
 </body>
+
+{% if 'login_id' in session %}
+
+
+
+    <div class="sideMenu" alt="upload menu">
+      <nav class="sideMenuWrapper">
+
+        <div >
+          <h3 id="upload_text">Upload</h3>
+          <!-- <a href="#" class="closeTrigger"><i class="fa fa-times"></i></a> -->
+        </div>
+
+
+        <form action="upload" method="post" enctype="multipart/form-data">
+            
+            <div class="form-group">
+                <label>Publishers:</label>
+                <select name="publishers" class="selectpicker">
+                    {% for pub in publishers%}
+                        <option value="{{pub.name}}">{{pub.name}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label>Genres:</label>
+                <select name="genres" class="selectpicker">
+                {% for gen in genres%}
+                    <option value="{{gen.genre}}">{{gen.genre}}</option>
+                {%endfor%}
+                </select>
+
+
+            </div>
+
+            <div class="form-group">
+                <span class="btn btn-default btn-file">
+                    <input type="file" multiple name="file[]">
+
+                <!-- <input class="btn btn-default btn-primary"  type="submit" value="  Upload Comics "> -->
+            </div>
+            <div class="form-group">
+              <input class="btn btn-default btn-primary"  type="submit" value="  Upload Comics ">
+            </div>
+
+
+        </form> <!-- /.FORM -->
+      </nav>
+    </div>
+
+  
+
+{%endif%}
+
+
 </html>
