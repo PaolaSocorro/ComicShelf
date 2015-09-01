@@ -4,14 +4,21 @@
   box-sizing: border-box;
 }
 
+/*body{
+  width: 100%;
+  min-height: 100%;
+}
 
+html{
+  position: relative;
+}*/
 
-body, button, h1,h2,h3,h4,h5,a, .modal-title{
+body, button, h1,h2,h3,h4,h5,a, .modal-title, #login-form,#signup-form{
   /*font-family: 'Helvetica Neue', arial, sans-serif;*/
   font-family: 'Righteous', cursive;
   font-size: 1.1em; 
 }
-input, select, label, textarea,p, .filter, .mix, .sideMenuWrapper{
+input, select, label, textarea,p, .filter, .mix, .sideMenuWrapper,#login-form,#signup-form{
   font-family: 'Signika', sans-serif;
 }
 .navbar-text{
@@ -45,11 +52,13 @@ input, select, label, textarea,p, .filter, .mix, .sideMenuWrapper{
 
 #navbar{
    background-color: #292c2f;
-   padding: 1%;
-   margin:-10px;
+   /*width: 100%;*/
+   padding: 10px 20px;
+   border-radius: 0;
+   /*padding: 1%;*/
 }
 #navbar a{
-   color:  #ffffff;
+   color:  #69D2E7;
 
 }
 .navbar .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
@@ -58,10 +67,11 @@ input, select, label, textarea,p, .filter, .mix, .sideMenuWrapper{
 }
 
 
-/*.login-form{
-  float: none;
-  margin: 0 auto;
-}*/
+#login-form, #signup-form{
+  /*float: none;*/
+  margin-left:25%;
+  margin-right: 25%;
+}
 
 
 
@@ -72,24 +82,26 @@ input, select, label, textarea,p, .filter, .mix, .sideMenuWrapper{
 }
 
 .mix_controls{
-  padding: 2%;
+  padding: 0.5%;
+  padding-left: 25px;
   background: #333;
   color: #eee;
+
 }
 
 label{
   /*font-weight: 300;*/
   margin: 0 .4em 0 0;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 button{
   display: inline-block;
-  padding: .4em .8em;
+  padding: .2em .4em;
   background: #666;
   border: 0;
   color: #ddd;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 300;
   border-radius: 4px;
   cursor: pointer;
@@ -103,15 +115,23 @@ button:focus{
   outline: 0 none;
 }
 
+button:hover{
+  background: #03899c;
+}
+
 button + label{
   margin-left: 1em;
+}
+
+.mix_library{
+  margin-top: -55px;
 }
 
 .mix_container{
   padding: 2% 2% 0;
   text-align: justify;
   font-size: 1em;
-  background: #68b8c4;
+  background: #292c2f;
   
   -webkit-backface-visibility: hidden;
 }
@@ -237,17 +257,21 @@ button + label{
 /*FOOTER*/
 /*#################*/
 
+
+.footer{
+  padding-top: 10px;
+}
+
 .footer-distributed{
-  position:absolute;
+
   /*bottom: 0;*/
   background-color: #292c2f;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
+  /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);*/
+  /*box-sizing: border-box;*/
   width: 100%;
   text-align: left;
   font: normal 14px sans-serif;
-
-  padding: 45px 50px;
+  padding: 30px 50px;
   margin-top: 80px;
 }
 

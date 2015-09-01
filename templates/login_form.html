@@ -2,20 +2,20 @@
 {% block content %}
 
 
-<div class="row">
+<div id="login-form" class="row">
 
     <h1 class="form-signin-heading">Login</h1>
 
     <form action="/login" class="form-signin" method="POST">
 
-        <div class="input-group input-group-lg col-md-4 margin-bottom-sm">
+        <div class="input-group input-group-lg margin-bottom-sm">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-envelope"></span>
             </span>
         <input class="form-control" type="email" name="email" placeholder="Email address" required autofocus>
         </div>
         <br>
-        <div class="input-group input-group-lg col-md-4 margin-bottom-sm">
+        <div class="input-group input-group-lg margin-bottom-sm">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-lock"></span>
             </span>

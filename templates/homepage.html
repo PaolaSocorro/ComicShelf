@@ -7,10 +7,12 @@
         <br /><br />
 
 <!-- MIXITUP CONTAINER -->
-
+    <div class="mix_library">
+        
         <div class="mix_controls">
-            <label>Filter:</label>
-            <button class="filter" data-filter="all">All</button>
+            <div>
+                <label>Filter:</label>
+                <button class="filter" data-filter="all">All</button>
 
             <!-- <button class="filter" data-filter=".category-1">Category 1</button> -->
             {%for book in mix_titles%}
@@ -23,11 +25,14 @@
                 <button class="filter" data-filter=".category-{{pub[0]}}">{{pub[1]}}</button>
 
             {%endfor%} <!-- END OF FORLOOP IN MIX_CONTROLS --> 
+            </div> <!-- /END OF Filter Tag -->
+            <br>
+            <div>
+                <label>Sort:</label>
 
-            <label>Sort:</label>
-
-            <button class="sort" data-sort="myorder:asc">Asc</button>
-            <button class="sort" data-sort="myorder:desc">Desc</button>
+                <button class="sort" data-sort="myorder:asc">Asc</button>
+                <button class="sort" data-sort="myorder:desc">Desc</button>
+            </div> <!-- /.END OF SORT TAG -->
 
         </div> <!-- END OF MIX CONTROLS DIV -->
 
@@ -51,7 +56,7 @@
         </div><!-- END OF MIX CONTAINER DIV -->
 
     {%endif%}   <!-- END OF JINJA IF LOGIN CHECK -->
-
+    </div> <!-- /.END OF MIX LIBRARY -->
 
 <!-- MODAL COMIC VIEWER -->
 

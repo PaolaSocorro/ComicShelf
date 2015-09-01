@@ -102,7 +102,7 @@ $('a.sideTrigger').click(function() {
         return false;
     });
 
-    // Close Menu Trigger Function
+// Close Menu Trigger Function
 $('span.a.closeTrigger').click(function() {
     $('body').toggleClass('sideOpen');
     return false;
@@ -110,36 +110,49 @@ $('span.a.closeTrigger').click(function() {
 
 
 
+//Footer stick to bottom with dynamic pages
+
+$(function(){
+    posFooter();
+    function posFooter(){
+
+        var padding_top = $('.footer').css("padding-top").replace("px","");
+        var document_height = $(document.body).height() - padding_top;
+        var window_height = $(window).height();
+        var diff = window_height - document_height;
+
+        if (diff <0){diff = 0;}
+
+        $('.footer').css({
+            padding: diff + "px 0 0 0"
+        });
+    }
+
+    $(window).resize(posFooter);
+});
+
+
+$(function(){
+    positionFooter(); 
+    function positionFooter(){
+        var padding_top = $(".footer").css("padding-top").replace("px", "");
+        var page_height = $(document.body).height() - padding_top;
+        var window_height = $(window).height();
+        var difference = window_height - page_height;
+        if (difference < 0) 
+            difference = 0;
+
+        $(".footer").css({
+            padding: difference + "px 0 0 0"
+        })
+    }
+
+    $(window)
+        .resize(positionFooter)
+});
+
 // $('#carousel').carousel({
 //     interval: 99999,
 //     pause: false
 // });
 // $('.item').zoom({on:'mouseover'});
-
-// $(function() {
-//     $('button').click(function() {
-//         $.ajax({
-//             url: '/open_book',
-//             data: $('form').serialize(),
-//             type: 'POST',
-//             success: function(response) {
-//                 console.log(response);
-//                 printy(response);
-
-//             },
-//             error: function(error) {
-//                 console.log(error);
-//             }
-
-
-
-//         });
-//         console.log("hello");
-
-
-//     });
-// });
-
-
-
-// = "static/uploads/Avengers Assemble/Avengers_Assemble_001_2012_Digital_Zone-Empire/Zone"

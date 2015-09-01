@@ -52,6 +52,8 @@ def walk_files(files):
         n = re.compile(r'([a-zA-Z-:_(\s)]+)')
         y = re.compile(r'(\d\d\d\d)')
         iss = re.compile(r'(.art\s\d)|(.art\d)|(.art_\d)|(\d\d\d)|(\d\d)|(\d)')
+        iss = re.compile(r'(\d\d\d)|(\d\d)|(\d)')
+        print 'ISSUE NUMBER!!!!', iss
         e = re.compile(r'(.cb.)')
         #CHECK FOR non-comic file formats and ignore
         """

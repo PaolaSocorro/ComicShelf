@@ -209,10 +209,12 @@ def user_profile(id):
    
     """
     this_user = User.query.filter_by(user_id=id).one()
+    publishers = Publisher.query.all()
+    genres = Genre.query.all()
 
 
 
-    return render_template("profile.html")
+    return render_template("profile.html", publishers=publishers, genres=genres, this_user=this_user )
 
 
 

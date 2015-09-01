@@ -1,40 +1,64 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="form-signin-heading">Sign up</h1>
+<div id="signup-form" class='row'>
 
-<div class="signup_message"></div>
+    <h1 class="form-signin-heading">Sign up</h1>
+     <br> 
 
-<form action="/signup" class="form-signin" method="POST">
+    <div class="signup_message"></div>
 
-    <div class="form-group">
-        <label for="name-field" class="sr-only"> Name </label>
-        <input type="name" name="name" placeholder="name" required autofocus>
-    </div>
-    <div class="form-group">
-        <label for="email-field" class="sr-only">E-Mail</label>
-        <input type="email" name="email" placeholder="Email" required>
-    </div>
+    <form action="/signup" class="form-signin" method="POST">
 
-    <div class="form-group">
-        <label for="password-field" class="sr-only"> Password </label>
-        <input type="password" name="password" placeholder="Password" required>
-    </div>
-    <div class="form-group">
-        <label for="age-field" class="sr-only"> Age </label>
-        <input type="number" name="age" placeholder="Age">
-    </div>
-    <div class="form-group">
-        <label for="gender-field" class="sr-only"> Gender </label>
-        <input type="gender" name="gender" placeholder="gender">
-<!--         <select type="gender" name="gender" placeholder="gender">
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-        </select> -->
-    </div>
+              
 
-    
-    <button class="btn btn-lg btn-primary" type="submit">Sign Up</button>
+        <div class="input-group input-group-lg margin-bottom-sm">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-user"></span>
+            </span>
+            <input class="form-control" type="name" name="name" placeholder="name" required autofocus>
+        </div>
 
-</form>
+        <br> 
+        <div class="input-group input-group-lg margin-bottom-sm">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-envelope"></span>
+            </span>
+            <input class="form-control" type="email" name="email" placeholder="Email" required>
+        </div>
+        <br> 
+
+        <div class="input-group input-group-lg margin-bottom-sm">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-lock"></span>
+            </span>
+            <input class="form-control" type="password" name="password" placeholder="Password" required>
+        </div>
+        <br> 
+
+
+        <div class="input-group input-group-lg margin-bottom-sm">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-grain"></span>
+            </span>
+            <input class="form-control" type="number" name="age" placeholder="Age">
+        </div>
+        <br> 
+
+
+        <div class="input-group input-group-lg margin-bottom-sm">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-sunglasses"></span>
+            </span>
+            <input class="form-control" type="gender" name="gender" placeholder="gender">
+
+        </div>
+
+        <br>       
+        <button class="btn btn-lg btn-primary" type="submit">Sign Up</button>
+
+    </form>
+
+</div>
+
 {% endblock %}

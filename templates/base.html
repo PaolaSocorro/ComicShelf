@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>Comics</title>
-  <link rel="stylesheet" href="static/css/styles.css" />
   <link rel="stylesheet" href="static/css/bootstrap-select.min.css" />
   <link rel="stylesheet" href="static/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" href="static/css/styles.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
   <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
@@ -29,7 +29,7 @@
 
 <body class="smenu-push">
 
-<div id="container ">
+<div id="container">
 
 
     <div id="navbar" class="navbar navbar-collapse collapse">
@@ -56,24 +56,25 @@
 
 
 
-    {% if 'login_id' not in session %}
+<!--     {% if 'login_id' not in session %}
     <h3>Log In to see your ComicShelf</h3>
-    {%endif%}
+    {%endif%} -->
 
 
-    {% with messages = get_flashed_messages() %}
+<!--     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
             {{ message }}
             {% endfor %}
         {% endif %}
-    {% endwith %}
+    {% endwith %} -->
 
 
 
 
 
   {% block content %} put your content here {% endblock %}
+
 
 
   <script type="text/javascript" src = "static/scripts/mixitup_comics.js"></script>
@@ -85,41 +86,44 @@
 <!-- end of main div container -->
 </div>  
 
-<footer class="footer-distributed">
 
-      <div class="footer-right">
 
-        <a href="https://www.facebook.com/AgentR3D"><i class="fa fa-facebook"></i></a>
-        <a href="https://twitter.com/paromi"><i class="fa fa-twitter"></i></a>
-        <a href="https://www.linkedin.com/in/paolasocorro"><i class="fa fa-linkedin"></i></a>
-        <a href="https://github.com/paolasocorro"><i class="fa fa-github"></i></a>
+<footer class="footer">
+  <div class="footer-distributed">
 
-      </div>
+    <div class="footer-right">
 
-      <div class="footer-left">
+      <a href="https://www.facebook.com/AgentR3D"><i class="fa fa-facebook"></i></a>
+      <a href="https://twitter.com/paromi"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/paolasocorro"><i class="fa fa-linkedin"></i></a>
+      <a href="https://github.com/paolasocorro"><i class="fa fa-github"></i></a>
 
-        <p class="footer-links">
-          <a href="/">Home</a>
-          ·
-          <a href="https://girlncode.wordpress.com/">Tech Blog</a>
-          ·
-          <a href="http://nightowli.tumblr.com/"http://nightowli.tumblr.com/>Art Blog</a>
-          ·
-          <a href="pao.socorro@gmail.com">Contact</a>
-        </p>
+    </div>
 
-        <p>Paola Socorro &copy; 2015</p>
-      </div>
+    <div class="footer-left">
 
+      <p class="footer-links">
+        <a href="/">Home</a>
+        ·
+        <a href="https://girlncode.wordpress.com/">Tech Blog</a>
+        ·
+        <a href="http://nightowli.tumblr.com/">Art Blog</a>
+        ·
+        <a href="pao.socorro@gmail.com">Contact</a>
+      </p>
+
+      <p>Paola Socorro &copy; 2015</p>
+    </div>
+
+  </div>
 </footer>
-
-
 
 </body>
 
+
+
+
 {% if 'login_id' in session %}
-
-
 
     <div class="sideMenu" alt="upload menu">
       <nav class="sideMenuWrapper">
@@ -143,21 +147,19 @@
 
 
             <div class="form-group">
-                <label>Genres:</label>
-                <select name="genres" class="selectpicker">
-                {% for gen in genres%}
-                    <option value="{{gen.genre}}">{{gen.genre}}</option>
-                {%endfor%}
-                </select>
-
-
+              <label>Genres:</label>
+              <select name="genres" class="selectpicker">
+              {% for gen in genres%}
+                  <option value="{{gen.genre}}">{{gen.genre}}</option>
+              {%endfor%}
+              </select>
             </div>
 
             <div class="form-group">
-                <span class="btn btn-default btn-file">
-                    <input type="file" multiple name="file[]">
+              <span class="btn btn-default btn-file">
+                  <input type="file" multiple name="file[]">
 
-                <!-- <input class="btn btn-default btn-primary"  type="submit" value="  Upload Comics "> -->
+              <!-- <input class="btn btn-default btn-primary"  type="submit" value="  Upload Comics "> -->
             </div>
             <div class="form-group">
               <input class="btn btn-default btn-primary"  type="submit" value="  Upload Comics ">
