@@ -139,16 +139,15 @@ $(function(){
         var page_height = $(document.body).height() - padding_top;
         var window_height = $(window).height();
         var difference = window_height - page_height;
-        if (difference < 0) 
+        if (difference < 0)
             difference = 0;
 
         $(".footer").css({
             padding: difference + "px 0 0 0"
-        })
+        });
     }
 
-    $(window)
-        .resize(positionFooter)
+    $(window).resize(positionFooter);
 });
 
 // $('#carousel').carousel({

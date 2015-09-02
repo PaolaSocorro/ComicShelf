@@ -4,19 +4,19 @@
   box-sizing: border-box;
 }
 
-/*body{
-  width: 100%;
-  min-height: 100%;
+body{
+  background-color: #156B82 !important;
 }
 
 html{
   position: relative;
-}*/
+}
 
 body, button, h1,h2,h3,h4,h5,a, .modal-title, #login-form,#signup-form{
   /*font-family: 'Helvetica Neue', arial, sans-serif;*/
   font-family: 'Righteous', cursive;
   font-size: 1.1em; 
+  color: #ddd !important;
 }
 input, select, label, textarea,p, .filter, .mix, .sideMenuWrapper,#login-form,#signup-form{
   font-family: 'Signika', sans-serif;
@@ -30,6 +30,28 @@ input, select, label, textarea,p, .filter, .mix, .sideMenuWrapper,#login-form,#s
   padding-left: 7px;
 }
 
+#navbar{
+   background-color: #292c2f;
+   /*width: 100%;*/
+   padding: 10px 20px;
+   border-radius: 0;
+   /*padding: 1%;*/
+}
+
+#navbar a{
+  color: #ddd;
+}
+
+#navbar a:hover{
+  color: #02B6AD !important;
+}
+
+.navbar .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #292c2f;
+    /*color: #FFC0CB;*/
+}
+
+
 #upload_text{
   display: inline-block;
   font-family: 'Righteous', cursive;
@@ -38,7 +60,12 @@ input, select, label, textarea,p, .filter, .mix, .sideMenuWrapper,#login-form,#s
 .modal-title{
   text-align: center;
 }
-
+.modal-body, .modal-header{
+  background-color: #292c2f;
+}
+.modal-header{
+    border-bottom: 1px solid #292c2f !important;
+}
 .home_title{
   font-family: 'Righteous', cursive;
   font-size: 2.2em;
@@ -49,22 +76,6 @@ input, select, label, textarea,p, .filter, .mix, .sideMenuWrapper,#login-form,#s
   font-size: 1.5em;
 }
 
-
-#navbar{
-   background-color: #292c2f;
-   /*width: 100%;*/
-   padding: 10px 20px;
-   border-radius: 0;
-   /*padding: 1%;*/
-}
-#navbar a{
-   color:  #69D2E7;
-
-}
-.navbar .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: #292c2f;
-    /*color: #FFC0CB;*/
-}
 
 
 #login-form, #signup-form{
@@ -108,7 +119,7 @@ button{
 }
 
 button.active{
-  background: #68b8c4;
+  background: #156B82;
 }
 
 button:focus{
@@ -116,7 +127,7 @@ button:focus{
 }
 
 button:hover{
-  background: #03899c;
+  background: #02B6AD;
 }
 
 button + label{
@@ -131,7 +142,7 @@ button + label{
   padding: 2% 2% 0;
   text-align: justify;
   font-size: 1em;
-  background: #292c2f;
+  background: #156B82;
   
   -webkit-backface-visibility: hidden;
 }
@@ -201,7 +212,7 @@ button + label{
 /*SLIDE IN UPLOADS MENU SIDEBAR*/
 
 .sideMenu{
-  font-family: Arial, Helvetica, sans-serif;
+  /*font-family: Arial, Helvetica, sans-serif;*/
   /*float: left;*/
   width: 300px;
   top: 80px;
@@ -210,7 +221,7 @@ button + label{
   right: -300px;
   height: 100%;
   /*width: 300px;*/
-  background: #FFF;
+  background: #292c2f;
 
   -webkit-transition: all 400ms ease;
   -moz-transition: all 400ms ease;
@@ -231,7 +242,23 @@ button + label{
   right: 0;
 }
 
+.btn-default{
+  background-color: #333 !important;
+  border-color: #333 !important;
+}
+.btn-default:hover{
+    background-color: #666 !important;
+  border-color: #666 !important;
+}
 
+.dropdown-menu{
+  background-color: #333 !important;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: #666 !important;
+}
 
 /*CAROUSEL CHANGE THIS LATER*/
 
@@ -275,6 +302,8 @@ button + label{
   margin-top: 80px;
 }
 
+
+
 .footer-distributed .footer-left p{
   color:  #8f9296;
   font-size: 14px;
@@ -317,6 +346,9 @@ button + label{
   line-height: 35px;
 
   margin-left: 3px;
+}
+.footer-distributed a:hover{
+  color: #02B6AD !important;
 }
 
 /* If you don't want the footer to be responsive, remove these media queries */
