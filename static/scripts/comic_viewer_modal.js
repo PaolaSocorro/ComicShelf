@@ -39,27 +39,6 @@ $('.comicopen').on('click', function (){
 // #########################
 
 
-
-// $('#myModal').on('shown.bs.modal', function() {
-//     $('#magnify').click(function(){
-
-//         if($(this).hasClass('zoomed')){
-//             $(this).removeClass('zoomed');
-//             $(this).elevateZoom({
-//                 zoomEnabled: false
-//             });
-//             // $('.zoomContainer').remove();
-
-//         }else{
-//             zoom();
-//             $(this).addClass('zoomed');
-//         }
-
-       
-//     });
-// });
-
-
 function zoom (){
     $("#zoom_07").elevateZoom({
     zoomType: 'lens',

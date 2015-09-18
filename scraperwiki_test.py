@@ -1,5 +1,12 @@
 # import requests,bs4
 
+"""
+just playing with BeautifulSoup and scraping wikipedia
+
+"""
+
+
+
 # title = "Batman_Eternal"
 # url = 'http://en.wikipedia.org/wiki/' + title
 

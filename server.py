@@ -160,7 +160,7 @@ def upload():
             file_name = info['comics'][0]['file']
 
             #UNPACK COMICS GET ISSUE PATH AND COVER ISSUE PATH in that order
-            ci_paths = parse_comics.unpack_rars(path)
+            ci_paths = parse_comics.unpack_comics(path)
 
 
             print "ALL PATHS RETURNED: ", ci_paths

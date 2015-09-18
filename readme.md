@@ -3,8 +3,8 @@
 ComicShelf creates a visual library of your digital comic files. Each file is uploaded into ComicShelf in a compressed format. The app processes the name of the file and extract information like the comic's title, issue number and release year. 
 This information and more is saved onto a database, and the archive is then uncompressed. ComicShelf then shows the user a thumbnail of each comic they have uploaded. Comics can be sorted by name or publisher, making them easy to find. ComicShelf enhaces your comic reading experience, allowing you to read in the browser
 
-[insert image here]
-[create working gif?]
+![ComicShelf](https://33.media.tumblr.com/d7fc59ae71111e19b917539b5bb704d4/tumblr_nu10xtm0ap1u6majmo1_1280.gif)
+
 
 
 
@@ -12,6 +12,12 @@ This information and more is saved onto a database, and the archive is then unco
 
 The idea for this project has been around in my head for quite a while, but only after attending Hackbright Academy did I have the necessary skills to bright make it real. 
 I love reading comic books. I love staring at the beautiful art that my favorite artists create. Artists like Jim Lee and Joe Madureira. My digital comic library is extensive, which made it difficult to remember where I left off reading. I'm a very visual person, for me a visual cue will help me remember what book I was reading a lot faster. As an artist, I often draw inspiration from the amazing art in these books. Staring at pretty pictures is clearly also a hobby of mine!.
+
+
+### Thoughts && Challenges
+For this project I chose to apply and learn more about other technologies such as PostgreSQL, REGEX, using the rarFile module for Python. As well as the os module. 
+At first I assumed learning and using regular expressions would be my biggest challenge. It turned out to be the one I had most fun with, and not as bad as I thought. Figuring out how to uncompress rarfiles turned out to be the biggest challenge. Along the way I even learned a bit about bash scripting, which I hope to use some time soon. 
+The best part about this project was being able to work alone in my own space, and yet still have someone to pair program with to fix an error that I couldn't fix by myself. 
 
 
 ### Version
@@ -122,4 +128,3 @@ MIT
 - [MixItUp](https://mixitup.kunkalabs.com/)
 - [ElevateZoom](http://www.elevateweb.co.uk/image-zoom)
 - [rarFile](http://rarfile.readthedocs.org/en/latest/#)
-

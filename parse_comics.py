@@ -11,42 +11,6 @@ import tarfile
 
 
 
-
-
-
-def unpack_zips(root):
-    """ 
-    Extracts zips from zipfile. 
-    Makes folder for all images. 
-    RETURNS: PATH to folder, and cover image in folder.
-    """
-    # import pdb; pdb.set_trace()
-    for f in os.listdir(root):
-        my_zip = ""
-        issue_path=""
-        icover_path=""
-
-        root_path = root
-        my_zip = os.path.join(root, f)
-
-        if os.path.isdir(my_zip) == False:
-            zip_file = zipfile.ZipFile(my_zip, 'r')
-            zip_file.extractall(root)
-            # print dir(zip_file)
-            #REMOVES THE EXTENSION FROM ZIP FILE PATH
-            issue_path = zip_file.namelist()[0]
-            folder_path = issue_path
-            # zip_file.printdir()
-            #MAKES PATH TO FIRST IMAGE IN THE ISSUE
-            issue_path = os.path.join(root, issue_path)
-            icover_path = os.listdir(issue_path)[0]
-            # icover_path = os.path.join(issue_path, icover_path)
-            # print "parse_comics issue_path: ", issue_path
-            # print "parse_comics icover_path: ", icover_path
-
-    return [issue_path,icover_path,folder_path]
-
-
 def find_images(folder,img_type):
     """
     Traverse folder directory and find images
@@ -55,7 +19,7 @@ def find_images(folder,img_type):
     pass
 
 
-def unpack_rars(root):
+def unpack_comics(root):
     """
     Extracts rars from rarfile.
     Makes folder for all images.
