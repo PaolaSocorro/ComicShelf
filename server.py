@@ -13,7 +13,6 @@ import os, sys
 USER_ROOT = r'C:/cygwin64/home/Paola/src/hbproject/'
 UPLOAD_FOLDER = 'static/uploads/'
 ALLOWED_EXTENSIONS = set(['cbr','cbz','cbt','cba','cb7'])
-# ALLOWED_EXTENSIONS = set(['cbr','cbz','pdf', 'png', 'jpg', 'jpeg', 'gif','bmp','tiff'])
 
 
 app = Flask(__name__)
@@ -21,13 +20,12 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 app.config['USER_ROOT']=USER_ROOT
 PORT = int(os.environ.get("PORT", 5000))
-# print app
+DEBUG = "NO_DEBUG" not in os.environ
 
-# Required to use Flask sessions and the debug toolbar
-app.secret_key = "ABC"
 
-# Normally, if you use an undefined variable in Jinja2, it fails silently.
-# This is horrible. Fix this so that, instead, it raises an error.
+SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "ABCDEF")
+
+
 app.jinja_env.undefined = StrictUndefined
 
 def allowed_file(filename):
@@ -41,6 +39,9 @@ def allowed_file(filename):
 ###################################
 
 """
+@app.route("/error")
+def error():
+    raise Exception("Error!")
 
 @app.route('/')
 def index():
@@ -350,5 +351,5 @@ if __name__ == "__main__":
 
     # Use the DebugToolbar
     # DebugToolbarExtension(app)
-    app.run(debug=True, host="0.0.0.0", port=PORT)
+    app.run(debug=DEBUG, host="0.0.0.0", port=PORT)
     # app.run()
