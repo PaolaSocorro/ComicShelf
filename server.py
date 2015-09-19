@@ -20,6 +20,7 @@ app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 app.config['USER_ROOT']=USER_ROOT
+PORT = int(os.environ.get("PORT", 5000))
 # print app
 
 # Required to use Flask sessions and the debug toolbar
@@ -349,5 +350,5 @@ if __name__ == "__main__":
 
     # Use the DebugToolbar
     # DebugToolbarExtension(app)
-
-    app.run()
+    app.run(debug=True, host="0.0.0.0", port=PORT)
+    # app.run()
