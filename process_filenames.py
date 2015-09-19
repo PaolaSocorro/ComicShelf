@@ -79,7 +79,16 @@ def walk_files(files):
 
 if __name__ == "__main__":
 
-    # comics = make_files(root)
-    new_list = 'Batman_Eternal_001_2014_Digital_Nahga-Empire.cbr'
+    from doctest import testmod
+    # if testmod().failed == 0:
+        # Tests pass, so we can start our server! Tests FTW!
+        # app.run(debug=True)
 
-    walk_files(new_list)
+    comic_name = 'Batman_Eternal_001_2014_Digital_Nahga-Empire.cbr'
+
+    walk_files(comic_name)
+
+
+
+
+
