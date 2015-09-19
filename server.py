@@ -13,17 +13,19 @@ import os, sys
 USER_ROOT = r'C:/cygwin64/home/Paola/src/hbproject/'
 UPLOAD_FOLDER = 'static/uploads/'
 ALLOWED_EXTENSIONS = set(['cbr','cbz','cbt','cba','cb7'])
+DATABASE_URL = os.environ.get("DATABASE_URL",
+                              'postgres://postgres:wildm3101@localhost:5432/comicsdb')
+
+SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "ABCDEF")
+PORT = int(os.environ.get("PORT", 5000))
+DEBUG = "NO_DEBUG" not in os.environ
 
 
 app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 app.config['USER_ROOT']=USER_ROOT
-PORT = int(os.environ.get("PORT", 5000))
-DEBUG = "NO_DEBUG" not in os.environ
-
-
-SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "ABCDEF")
+app.secret_key = SECRET_KEY
 
 
 app.jinja_env.undefined = StrictUndefined
@@ -345,7 +347,7 @@ def log_out():
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the point
     # that we invoke the DebugToolbarExtension
-    app.debug = True
+    # app.debug = True
 
     connect_to_db(app)
 
