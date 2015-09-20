@@ -13,8 +13,7 @@ import os, sys
 USER_ROOT = r'C:/cygwin64/home/Paola/src/hbproject/'
 UPLOAD_FOLDER = 'static/uploads/'
 ALLOWED_EXTENSIONS = set(['cbr','cbz','cbt','cba','cb7'])
-DATABASE_URL = os.environ.get("DATABASE_URL",
-                              'postgres://postgres:wildm3101@localhost:5432/comicsdb')
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
 SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "ABCDEF")
 PORT = int(os.environ.get("PORT", 5000))

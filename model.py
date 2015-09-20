@@ -1,16 +1,15 @@
 """Models and database functions for Comics organization project."""
 
 from flask_sqlalchemy import SQLAlchemy
-from flask.heroku import Heroku
 import os
 import psycopg2
-import urlparse
 
 
 
 
-db = SQLAlchemy(app)
-heroku = Heroku(app)
+
+db = SQLAlchemy()
+# heroku = Heroku(app)
 
 ###########REMEMBER TO RUN POSTGRESQL ON CONSOLE FOR NOW #########
 
@@ -273,19 +272,7 @@ def connect_to_db(app):
     """Connect the database to our Flask app."""
     
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://paola:hackbright@localhost:5432/comics'
 
-
-    # urlparse.uses_netloc.append("postgres")
-    # url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
-    # conn = psycopg2.connect(
-    #     database=url.path[1:],
-    #     user=url.username,
-    #     password=url.password,
-    #     host=url.hostname,
-    #     port=url.port
-    # )
 
 
     db.app = app
