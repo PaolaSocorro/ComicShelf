@@ -1,6 +1,7 @@
 """Models and database functions for Comics organization project."""
 
 from flask_sqlalchemy import SQLAlchemy
+from flask.heroku import Heroku
 import os
 import psycopg2
 import urlparse
@@ -8,7 +9,8 @@ import urlparse
 
 
 
-db = SQLAlchemy()
+db = SQLAlchemy(app)
+heroku = Heroku(app)
 
 ###########REMEMBER TO RUN POSTGRESQL ON CONSOLE FOR NOW #########
 
