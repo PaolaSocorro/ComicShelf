@@ -41,7 +41,7 @@ if __name__ == "__main__":
     print "Connected to db"
 
 
-
+    db.create_all()
     seed_publishers()
     seed_genres()
 
