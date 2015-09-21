@@ -42,13 +42,8 @@ if __name__ == "__main__":
 
 
     db.create_all()
+    print "Database created"
     seed_publishers()
     seed_genres()
 
 
-
-
-#MATCHES THE ISSUE NUMBER
-# (.art\s\d)|(.art\d)|(\d\d\d)|(\d\d)|(\d)
-
-   # m = re.search('([a-zA-Z-:_(\s)]+)','\(\d\d\d\d\)','\(.*\)','(.cb.)')

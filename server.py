@@ -18,6 +18,7 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "ABCDEF")
 PORT = int(os.environ.get("PORT", 5000))
 DEBUG = "NO_DEBUG" not in os.environ
+HEROKU = "HEROKU" not in os.environ
 
 
 app = Flask(__name__)
@@ -303,15 +304,17 @@ def signup_form():
 
 
         user = User.query.filter_by(email=email).first()
-        c_name = user.name
-        c_email = user.email
+        # c_name = user.name
+        # c_email = user.email
 
         # if
 
         person = User(name=name, email=email, password=password, age=age, gender=gender)
 
         db.session.add(person)
-        db.session.commit()
+
+        if not HEROKU:
+            db.session.commit()
         # new_userid = db.session.query.get(User.user_id.desc()).first()
 
         print person
