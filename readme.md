@@ -4,7 +4,7 @@ ComicShelf creates a visual library of your digital comic files. Each file is up
 This information and more is saved onto a database, and the archive is then uncompressed. ComicShelf then shows the user a thumbnail of each comic they have uploaded. Comics can be sorted by name or publisher, making them easy to find. ComicShelf enhaces your comic reading experience, allowing you to read in the browser
 
 ![ComicShelf](https://33.media.tumblr.com/d7fc59ae71111e19b917539b5bb704d4/tumblr_nu10xtm0ap1u6majmo1_1280.gif)
-[![Alt text for your video](http://img.youtube.com/vi/T-D1KVIuvjA/0.jpg)](https://youtu.be/8uFe3LLzVRk)
+[![Alt text for your video](http://img.youtube.com/vi/8uFe3LLzVRk/0.jpg)](https://youtu.be/8uFe3LLzVRk)
 
 
 
